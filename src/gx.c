@@ -60,7 +60,7 @@ void DrawScene  (Mtx view);
 int  BuildLists (GXTexObj texture);
 void SetLight   (Mtx view);
 
-int main(int argc,char **argv)
+int main2(int argc,char **argv)
 {
 	f32 yscale;
 	u32 xfbHeight;
@@ -166,8 +166,9 @@ int main(int argc,char **argv)
 		exit(1);        // Exit if failed.
 	}
     float fov = 40.0f;
+    CON_Init(frameBuffer[0], 0, 0, rmode->fbWidth, rmode->efbHeight, rmode->fbWidth * VI_DISPLAY_PIX_SZ);
+    CON_Init(frameBuffer[1], 0, 0, rmode->fbWidth, rmode->efbHeight, rmode->fbWidth * VI_DISPLAY_PIX_SZ);
 	while(1) {
-
         guPerspective(perspective, fov += 0.01f, (f32)w /h , 0.1f, 1000.0f);
         GX_LoadProjectionMtx(perspective, GX_PERSPECTIVE);
 

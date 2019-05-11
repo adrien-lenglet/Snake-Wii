@@ -27,15 +27,15 @@ INCLUDES	:=
 # options for code generation
 #---------------------------------------------------------------------------------
 
-CFLAGS		=	-std=gnu99 -Wall -Wextra $(MACHDEP) $(INCLUDE)
-CXXFLAGS	=	$(CFLAGS)
+export CFLAGS	=	-std=gnu99 -Wall -Wextra $(MACHDEP) $(INCLUDE)
+export CXXFLAGS	=	$(CFLAGS)
 
-LDFLAGS	=	$(MACHDEP) -Wl,-Map,$(notdir $@).map
+export LDFLAGS	=	$(MACHDEP) -Wl,-Map,$(notdir $@).map
 
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:=	-lwiiuse -lbte -logc -lm
+export LIBS	:=	-lwiiuse -lbte -logc -lm
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -101,7 +101,14 @@ export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib) \
 					-L$(LIBOGC_LIB)
 
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
-.PHONY: $(BUILD) clean debug release
+
+.PHONY: debug release $(BUILD) clean
+
+debug: CFLAGS := -g $(CFLAGS)
+debug: $(BUILD)
+
+release: CFLAGS := -O3 $(CFLAGS)
+release: $(BUILD)
 
 #---------------------------------------------------------------------------------
 $(BUILD):
@@ -114,12 +121,6 @@ clean:
 #---------------------------------------------------------------------------------
 run:
 	wiiload $(OUTPUT).dol
-
-debug: CFLAG += -g
-debug: $(BUILD)
-
-release: CFLAGS += -g
-release: $(BUILD)
 
 #---------------------------------------------------------------------------------
 else
