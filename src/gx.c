@@ -30,26 +30,6 @@ u32 yloop;        // Loop for y axis
 f32 xrot = 0.0f; // Rotates cube on the x axis
 f32 yrot = 0.0f; // Rotates cube on the y axis
 
-/* TODO:
-	* Convert colors into indexed arrays.
-	* Fix cubes not rotating vertically. */
-
-static f32 BoxColors[5][3] = { // Bright
-	{1.0f,0.0f,0.0f}, // Red
-	{1.0f,0.5f,0.0f}, // Orange
-	{1.0f,1.0f,0.0f}, // Yellow
-	{0.0f,1.0f,0.0f}, // Green
-	{0.0f,1.0f,1.0f}  // Blue
-};
-
-static f32 TopColors[5][3] = { // Dark
-	{0.5f,0.0f,0.0f},
-	{0.5f,0.25f,0.0f},
-	{0.5f,0.5f,0.0f},
-	{0.0f,0.5f,0.0f},
-	{0.0f,0.5f,0.5f}
-};
-
 static GXColor lightColor[] = {
 	{0x80,0x80,0x80,0xFF}, // Light color
 	{0x80,0x80,0x80,0xFF}, // Ambient color
@@ -62,6 +42,8 @@ void SetLight   (Mtx view);
 
 int main2(int argc,char **argv)
 {
+    (void)argc;
+    (void)argv;
 	f32 yscale;
 	u32 xfbHeight;
 	u32 fb = 0;

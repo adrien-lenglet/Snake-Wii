@@ -21,7 +21,7 @@ BUILD		:=	build
 SOURCES		:=	src
 DATA		:=
 TEXTURES	:=	res/textures
-INCLUDES	:=
+INCLUDES	:=	include
 
 #---------------------------------------------------------------------------------
 # options for code generation
