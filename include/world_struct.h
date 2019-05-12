@@ -57,6 +57,8 @@ typedef struct {
     int do_reupload;
     gluint vertex_buffer;
     gluint vertex_array;
+    void *disp_list;
+    u32 disp_list_size;
 } mesh_gpu_t;
 
 typedef struct {

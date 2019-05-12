@@ -22,6 +22,7 @@
 #include <dirent.h>
 #include <fcntl.h>
 #include <malloc.h>
+#include <stdarg.h>
 
 #include <gccore.h>
 #include <wiiuse/wpad.h>

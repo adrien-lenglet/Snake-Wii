@@ -175,6 +175,8 @@ void DrawScene(Mtx view) {
 
 void init(void)
 {
+    srand(time(NULL));
+    _demo->buf.msgs = vec_msg_entry_create();
 	f32 yscale;
 	u32 xfbHeight;
 	GXTexObj texture;
@@ -203,7 +205,8 @@ void init(void)
 	VIDEO_SetNextFramebuffer(_demo->buf.frameBuffer[_demo->buf.fb]);
 	VIDEO_Flush();
 	VIDEO_WaitVSync();
-	if(rmode->viTVMode&VI_NON_INTERLACE) VIDEO_WaitVSync();
+	if(rmode->viTVMode & VI_NON_INTERLACE)
+        VIDEO_WaitVSync();
 
 	_demo->buf.fb ^= 1;
 
@@ -269,7 +272,7 @@ void init(void)
 	if (BuildLists(texture)) { // Build the display lists
 		exit(1);        // Exit if failed.
 	}
-    CON_Init(_demo->buf.frameBuffer[0], 0, 0, rmode->fbWidth, rmode->efbHeight, rmode->fbWidth * VI_DISPLAY_PIX_SZ);
+    CON_Init(_demo->buf.frameBuffer[0], 20, 20, rmode->fbWidth, rmode->efbHeight, rmode->fbWidth * VI_DISPLAY_PIX_SZ);
     VIDEO_SetBlack(FALSE);
 }
 

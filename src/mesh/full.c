@@ -27,7 +27,7 @@ int do_create_sub)
         res->ext_count = 0;
         res->ext_allocated = 0;
         res->ext = NULL;
-        res->gpu = (mesh_gpu_t){0, 0, 0, 0};
+        res->gpu = (mesh_gpu_t){0, 0, 0, 0, NULL, 0};
     }
     return res;
 }

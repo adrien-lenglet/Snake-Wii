@@ -17,7 +17,7 @@ mesh_t* mesh_create(int gpu_do_upload)
     if (gpu_do_upload)
         mesh_gpu_init(res);
     else
-        res->gpu = (mesh_gpu_t){0, 0, 0, 0};
+        res->gpu = (mesh_gpu_t){0, 0, 0, 0, NULL, 0};
     return res;
 }
 

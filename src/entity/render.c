@@ -18,10 +18,27 @@ static void mesh_full_refresh(mesh_full_t *mesh)
         }
     }
     if (mesh->mesh->gpu.do_reupload) {
-        /*glBindBuffer(GL_ARRAY_BUFFER, mesh->mesh->gpu.vertex_buffer);
-        glBufferData(GL_ARRAY_BUFFER,
-        mesh->mesh->vertex_count * sizeof(vertex_t),
-        mesh->mesh->vertex, GL_STATIC_DRAW);*/
+        free(mesh->mesh->gpu.disp_list);
+        size_t size = 64 + mesh->mesh->vertex_count * sizeof(vertex_t);
+        mesh->mesh->gpu.disp_list = memalign(32, size);
+		memset(mesh->mesh->gpu.disp_list, 0, size);
+		DCInvalidateRange(mesh->mesh->gpu.disp_list, size);
+		GX_BeginDispList(mesh->mesh->gpu.disp_list, size);
+		GX_Begin(GX_TRIANGLES, GX_VTXFMT0, mesh->mesh->vertex_count);
+        for (size_t i = 0; i < mesh->mesh->vertex_count; i++) {
+            vec3 p = mesh->mesh->vertex[i].pos;
+			GX_Position3f32(p.x, p.y, p.z);
+            vec3 n = mesh->mesh->vertex[i].normal;
+            GX_Normal3f32(n.x, n.y, n.z);
+            vec2 uv = mesh->mesh->vertex[i].uv;
+            GX_TexCoord2f32(uv.x, uv.y);
+        }
+		GX_End();
+		mesh->mesh->gpu.disp_list_size = GX_EndDispList();
+		if (mesh->mesh->gpu.disp_list_size == 0)
+            error_display("Error while refresing mesh.\n");
+        //else
+        //    error_display("Mesh successfully refreshed.\n");
         mesh->mesh->gpu.do_reupload = 0;
     }
 }

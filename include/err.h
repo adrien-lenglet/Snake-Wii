@@ -7,4 +7,4 @@
 
 #pragma once
 
-void error_display(void);
+void error_display(char *fmt, ...);

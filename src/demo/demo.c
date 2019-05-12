@@ -36,9 +36,8 @@ void demo_loop(demo_t *demo)
 	guLookAt(view, &cam, &up, &look);
 	f32 w = rmode->viWidth;
 	f32 h = rmode->viHeight;
-	//printf("That is a typical error msg, taking up to 4MB OF VRAM. Please note this has nothing to do with you, now you can reboot your system.");
+    //printf("That is a typical error msg, taking up to 4MB OF VRAM. Please note this has nothing to do with you, now you can reboot your system.");
 	while(1) {
-        printf("w: %f, h: %f\n", w, h);
         guPerspective(perspective, 40.0f, w /h , 0.1f, 1000.0f);
         GX_LoadProjectionMtx(perspective, GX_PERSPECTIVE);
 

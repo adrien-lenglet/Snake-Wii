@@ -87,8 +87,7 @@ void mesh_bank_init(void)
     //    _demo->mesh_bank[desc[i].bank] = mesh_load_obj(desc[i].path);
     for (size_t i = 0; i < MESH_BANK_MAX; i++)
         if (_demo->mesh_bank[i] == NULL) {
-            printf("Can't load mesh #%u\n", i);
-            error_display();
+            error_display("Can't load mesh #%u\n", i);
         }
 }
 
