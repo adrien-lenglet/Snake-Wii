@@ -32,10 +32,18 @@ void demo_loop(demo_t *demo)
         //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         //editor(demo);
         world_update();
-        world_render();
+
+		GX_CopyDisp(_demo->buf.frameBuffer[_demo->buf.fb], GX_TRUE);
+		GX_DrawDone();
+		VIDEO_SetNextFramebuffer(_demo->buf.frameBuffer[_demo->buf.fb]);
+		VIDEO_Flush();
+		VIDEO_WaitVSync();
+		_demo->buf.fb ^= 1;
         //render_hdr_to_screen();
         //iu_display();
         //sfRenderWindow_display(demo->win.window);
+        printf("That is a typical error msg, taking up to 4MB OF VRAM. Please note this has nothing to do with you, now you can reboot your system.");
+        error_display();
     }
 }
 

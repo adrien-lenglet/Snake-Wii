@@ -62,5 +62,7 @@
 #include "invent.h"
 #include "sound.h"
 #include "quests.h"
+#include "err.h"
+
 #include "textures_tpl.h"
 #include "textures.h"

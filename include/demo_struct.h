@@ -85,6 +85,8 @@ typedef struct {
     vec_render_call_t to_draw;
     int cull_state;
     vec_msg_entry_t msgs;
+    void *frameBuffer[2];
+    u32 fb;
 } buf_t;
 
 typedef enum {
