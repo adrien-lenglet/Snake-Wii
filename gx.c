@@ -40,7 +40,7 @@ void DrawScene  (Mtx view);
 int  BuildLists (GXTexObj texture);
 void SetLight   (Mtx view);
 
-int main2(int argc,char **argv)
+int main(int argc,char **argv)
 {
     (void)argc;
     (void)argv;

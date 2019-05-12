@@ -9,19 +9,179 @@
 
 #define DEFAULT_FIFO_SIZE (256 * 1024)
 
+GXRModeObj *rmode = NULL;
+
+u32 texture[1];   // Storage for one texture
+void *boxList[5]; // Storage for the display lists
+u32 boxSize[5];   // Real display list sizes
+u32 xloop;        // Loop for x axis
+u32 yloop;        // Loop for y axis
+
+f32 xrot = 0.0f; // Rotates cube on the x axis
+f32 yrot = 0.0f; // Rotates cube on the y axis
+
+static GXColor lightColor[] = {
+	{0x80,0x80,0x80,0xFF}, // Light color
+	{0x80,0x80,0x80,0xFF}, // Ambient color
+	{0x80,0x80,0x80,0xFF}  // Mat color
+};
+
+void SetLight(Mtx view)
+{
+	guVector lpos;
+	GXLightObj lobj;
+
+	lpos.x = 0;
+	lpos.y = 0;
+	lpos.z = 2.0f;
+
+	guVecMultiply(view,&lpos,&lpos);
+
+	GX_InitLightPos(&lobj,lpos.x,lpos.y,lpos.z);
+	GX_InitLightColor(&lobj,lightColor[0]);
+	GX_LoadLightObj(&lobj,GX_LIGHT0);
+
+	// set number of rasterized color channels
+	GX_SetNumChans(1);
+	GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_VTX,GX_SRC_VTX,GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
+	GX_SetChanAmbColor(GX_COLOR0A0,lightColor[1]);
+	GX_SetChanMatColor(GX_COLOR0A0,lightColor[2]);
+}
+
+int BuildLists(GXTexObj texture) {
+	// Make the new display list
+	// For display lists, each command has an associated "cost" in bytes.
+	// Add all these up to calculate the size of your display list before rounding up.
+	// eke-eke says GX_Begin() costs 3 bytes (u8 + u16)
+	// According to my research:
+	// GX_Position3f32() is 12 bytes (f32*3)
+	// GX_Normal3f32() is 12 bytes (f32*3)
+	// GX_Color3f32() is actually 3 bytes ((f32 -> u8) * 3)
+	// GX_TexCoord2f32() is 8 bytes (f32*2)
+	// GX_End() seems to cost zero (there's no actual code in it)
+	// Size -must- be multiple of 32, so (12*24) + (12*24) + (3*24) + (8*24) + 3 = 843
+	// Rounded up to the nearest 32 is 864.
+	// NOTE: Actual size may be up to 63 bytes -larger- than you calculate it to be due to padding and cache alignment.
+	for (int i=0; i<5;i++) {
+		boxList[i] = memalign(32,896);
+		memset(boxList[i],0,896);
+		DCInvalidateRange(boxList[i],896);
+		GX_BeginDispList(boxList[i],896);
+		GX_Begin(GX_QUADS,GX_VTXFMT0,24); // Start drawing
+			// Bottom face
+			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+            GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+            GX_TexCoord2f32(0.0f,1.0f); // Top left
+			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+            GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+            GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+			// Front face
+			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,1.0f); // Top left
+			// Back face
+			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,1.0f); // Top left
+			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			// Right face
+			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,1.0f); // Top left
+			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			// Left face
+			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,0.0f); // Bottom right
+			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,0.0f); // Top right
+			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,1.0f); // Top left
+			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,1.0f); // Bottom left
+			// Top face
+			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_TexCoord2f32(0.0f,1.0f); // Top left
+			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_TexCoord2f32(1.0f,0.0f); // Bottom rught
+			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_TexCoord2f32(1.0f,1.0f); // Top right
+		GX_End();         // Done drawing quads
+		// GX_EndDispList() returns the size of the display list, so store that value and use it with GX_CallDispList().
+		boxSize[i] = GX_EndDispList(); // Done building the box list
+		if (boxSize[i] == 0) return 1;
+	}
+
+	// setup texture coordinate generation
+	// args: texcoord slot 0-7, matrix type, source to generate texture coordinates from, matrix to use
+	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
+
+	// Set up TEV to paint the textures properly.
+	GX_SetTevOp(GX_TEVSTAGE0,GX_MODULATE);
+	GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+
+	// Load up the textures (just one this time).
+	GX_LoadTexObj(&texture, GX_TEXMAP0);
+
+	return 0;
+}
+
+void DrawScene(Mtx view) {
+	Mtx model,modelview; // Various matrices
+	guVector axis;                       // Axis to rotate on
+
+	// BUG: Light ignores underlying polygon colors.
+	SetLight(view); // Setup the light
+
+	for (yloop = 1; yloop < 6; yloop++) { // Loop through the y plane
+		for (xloop = 0; xloop < yloop; xloop++) { // Loop through the x plane
+			// Position the cubes on the screen
+			guMtxIdentity(model);
+
+			axis.x = 1.0f;
+			axis.y = 0;
+			axis.z = 0;
+			guMtxRotAxisDeg(model,&axis,(45.0f-(2.0f*(float)yloop)+xrot)); // Tilt the cubes up and down
+
+			axis.x = 0;
+			axis.y = 1.0f;
+			guMtxRotAxisDeg(model,&axis,(45.0f+yrot)); // Spin cubes left and right
+
+			guMtxTransApply(model,model,(1.4f-((float)yloop*1.4f)),(((6.0f-(float)yloop)*2.2f)-7.0f),-20.0f+((float)xloop*2.8f));
+
+			guMtxConcat(model,view,modelview);
+			GX_LoadPosMtxImm(modelview, GX_PNMTX0);
+
+			GX_CallDispList(boxList[yloop-1],boxSize[yloop-1]); // Draw the box
+		}
+	}
+}
+
 void init(void)
 {
-    thread_init();
-    srand(time(NULL));
-    load_gl_fun();
-    _demo->buf.cull_state = 1;
 	f32 yscale;
 	u32 xfbHeight;
-	_demo->buf.fb = 0;
 	GXTexObj texture;
 	void *gpfifo = NULL;
-    GXRModeObj *rmode = NULL;
 	GXColor background = {0x00, 0x00, 0x00, 0xFF};
+    _demo->buf.fb = 0;
+
 	TPLFile cubeTPL;
 
 	VIDEO_Init();
@@ -31,8 +191,8 @@ void init(void)
 	rmode = VIDEO_GetPreferredMode(NULL);
 
 	// allocate the fifo buffer
-	gpfifo = memalign(32, DEFAULT_FIFO_SIZE);
-	memset(gpfifo, 0, DEFAULT_FIFO_SIZE);
+	gpfifo = memalign(32,DEFAULT_FIFO_SIZE);
+	memset(gpfifo,0,DEFAULT_FIFO_SIZE);
 
 	// allocate 2 framebuffers for double buffering
 	_demo->buf.frameBuffer[0] = SYS_AllocateFramebuffer(rmode);
@@ -101,19 +261,16 @@ void init(void)
 	TPL_GetTexture(&cubeTPL, yoshi, &texture);
 	// setup our camera at the origin
 	// looking down the -z axis with y up
+
 	// setup our projection matrix
 	// this creates a perspective matrix with a view angle of 90,
 	// and aspect ratio based on the display resolution
-	_demo->win.w = rmode->viWidth;
-	_demo->win.h = rmode->viHeight;
 
+	if (BuildLists(texture)) { // Build the display lists
+		exit(1);        // Exit if failed.
+	}
     CON_Init(_demo->buf.frameBuffer[0], 0, 0, rmode->fbWidth, rmode->efbHeight, rmode->fbWidth * VI_DISPLAY_PIX_SZ);
     VIDEO_SetBlack(FALSE);
-    //world_render();
-    GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
-    GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
-    GX_SetAlphaUpdate(GX_TRUE);
-    GX_SetColorUpdate(GX_TRUE);
 }
 
 void quit(void)

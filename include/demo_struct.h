@@ -137,4 +137,6 @@ typedef struct {
     mesh_full_t *mesh_bank[MESH_BANK_MAX];
     sound_t sounds;
     quests_t quest;
+    /*void *boxList[5]; // Storage for the display lists
+    u32 boxSize[5];   // Real display list sizes*/
 } demo_t;

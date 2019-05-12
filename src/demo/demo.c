@@ -7,44 +7,66 @@
 
 #include "headers.h"
 
-/*static void render_hdr_to_screen(void)
-{
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glBindVertexArray(_iu.data.vertex_array);
-    glUseProgram(_demo->shader[SHADER_HDR].program);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, _demo->buf.hdr_render_texture);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, _demo->buf.dist_texture);
-    glUniform1f(_demo->shader[SHADER_HDR].uniform[1], _demo->clocks.t);
-    glDrawArrays(GL_TRIANGLES, 0, 6);
-}*/
+extern GXRModeObj *rmode;
+
+extern u32 texture[1];   // Storage for one texture
+extern void *boxList[5]; // Storage for the display lists
+extern u32 boxSize[5];   // Real display list sizes
+extern u32 xloop;        // Loop for x axis
+extern u32 yloop;        // Loop for y axis
+
+extern f32 xrot; // Rotates cube on the x axis
+extern f32 yrot; // Rotates cube on the y axis
+
+void DrawScene  (Mtx view);
+int  BuildLists (GXTexObj texture);
+void SetLight   (Mtx view);
 
 void demo_loop(demo_t *demo)
 {
+    (void)demo;
+	guVector cam = {0.0F, 0.0F, 0.0F},
+			up = {0.0F, 1.0F, 0.0F},
+		  look = {0.0F, 0.0F, -1.0F};
+	Mtx view; // view and perspective matrices
+	Mtx44 perspective;
+
     //main_quest_start();
     world_load_map();
-    while (demo_poll_events(demo) && (!demo->win.do_reboot)) {
-        //demo_update_cursor_visibility(demo);
-        //clocks_refresh_time();
-        //glBindFramebuffer(GL_FRAMEBUFFER, _demo->buf.hdr_framebuffer);
-        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        //editor(demo);
-        world_update();
+	guLookAt(view, &cam, &up, &look);
+	f32 w = rmode->viWidth;
+	f32 h = rmode->viHeight;
+	//printf("That is a typical error msg, taking up to 4MB OF VRAM. Please note this has nothing to do with you, now you can reboot your system.");
+	while(1) {
+        printf("w: %f, h: %f\n", w, h);
+        guPerspective(perspective, 40.0f, w /h , 0.1f, 1000.0f);
+        GX_LoadProjectionMtx(perspective, GX_PERSPECTIVE);
 
-		GX_CopyDisp(_demo->buf.frameBuffer[_demo->buf.fb], GX_TRUE);
+		WPAD_ScanPads();
+        PAD_ScanPads();
+		if(WPAD_ButtonsDown(0) & WPAD_BUTTON_HOME) exit(0);
+
+		u16 directions = PAD_ButtonsHeld(0);
+        (void)directions;
+
+        world_update();
+		// draw things
+		DrawScene(view);
+        world_render();
+
+		GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
+		GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
+		GX_SetAlphaUpdate(GX_TRUE);
+		GX_SetColorUpdate(GX_TRUE);
+		GX_CopyDisp(_demo->buf.frameBuffer[_demo->buf.fb],GX_TRUE);
+
 		GX_DrawDone();
+
 		VIDEO_SetNextFramebuffer(_demo->buf.frameBuffer[_demo->buf.fb]);
 		VIDEO_Flush();
 		VIDEO_WaitVSync();
 		_demo->buf.fb ^= 1;
-        //render_hdr_to_screen();
-        //iu_display();
-        //sfRenderWindow_display(demo->win.window);
-        printf("That is a typical error msg, taking up to 4MB OF VRAM. Please note this has nothing to do with you, now you can reboot your system.");
-        error_display();
-    }
+	}
 }
 
 static void jukebox(int start)
