@@ -50,7 +50,7 @@ static void chunk_update(chunk_t *chunk)
         entity3_move(chunk->ents_global->sub.ent[0], _demo->world.ents);
 }*/
 
-static void update_sound(void)
+/*static void update_sound(void)
 {
     double water_ratio;
     dvec3 c = dmat4_trans(_demo->world.camera->trans.world);
@@ -63,7 +63,7 @@ static void update_sound(void)
     sound_refresh_gain(SOUNDS_WATER, water_ratio * 100.0);
     if (_demo->quest.curr_main_quest == MAIN_QUEST_BOSS)
         play_new_music_ensure(MUSICS_BOSS, 1, 100.0);
-}
+}*/
 
 void world_update(void)
 {
@@ -73,5 +73,5 @@ void world_update(void)
     entity3_global_update(_demo->world.ents);
     world_update_triggers();
     refresh_vp(_demo);
-    update_sound();
+    //update_sound();
 }

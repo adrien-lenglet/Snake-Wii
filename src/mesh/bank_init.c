@@ -21,9 +21,9 @@
     {MESH_BANK_NPC1, "res/model/veget/pnj.obj"},
     {MESH_BANK_PLANE, "res/model/veget/plane.obj"},
     {MESH_BANK_MAX, NULL}
-};
+};*/
 
-const vec3 skybox[] = {
+/*const vec3 skybox[] = {
     {-10.0f, -10.0f, 1.0f},
     {-10.0f, 10.0f, 1.0f},
     {10.0f, -10.0f, 1.0f},
@@ -48,7 +48,7 @@ static mesh_full_t* load_particle1(void)
 
     mesh_full_add_quad(res, p);
     return res;
-}
+}*/
 
 static mesh_full_t* load_grass(void)
 {
@@ -72,26 +72,28 @@ static mesh_full_t* load_grass(void)
         mesh_full_add_quad(res, p_a);
     }
     return res;
-}*/
+}
 
 void mesh_bank_init(void)
 {
-    /*for (size_t i = 0; i < MESH_BANK_MAX; i++)
-        _demo->mesh_bank[i] = NULL;
-    _demo->mesh_bank[MESH_BANK_SKYBOX] = load_skybox();
+    mesh_full_t *grass = load_grass();
+
+    for (size_t i = 0; i < MESH_BANK_MAX; i++)
+        _demo->mesh_bank[i] = grass;
+    /*_demo->mesh_bank[MESH_BANK_SKYBOX] = load_skybox();
     _demo->mesh_bank[MESH_BANK_GRASS1] = load_grass();
-    _demo->mesh_bank[MESH_BANK_PARTICLE1] = load_particle1();
-    for (size_t i = 0; desc[i].bank != MESH_BANK_MAX; i++)
-        _demo->mesh_bank[desc[i].bank] = mesh_load_obj(desc[i].path);
+    _demo->mesh_bank[MESH_BANK_PARTICLE1] = load_particle1();*/
+    //for (size_t i = 0; desc[i].bank != MESH_BANK_MAX; i++)
+    //    _demo->mesh_bank[desc[i].bank] = mesh_load_obj(desc[i].path);
     for (size_t i = 0; i < MESH_BANK_MAX; i++)
         if (_demo->mesh_bank[i] == NULL) {
             printf("Can't load mesh #%zu\n", i);
             exit(84);
-        }*/
+        }
 }
 
 void mesh_bank_quit(void)
 {
-    for (size_t i = 0; i < MESH_BANK_MAX; i++)
-        mesh_full_destroy(_demo->mesh_bank[i]);
+    //for (size_t i = 0; i < MESH_BANK_MAX; i++)
+    //    mesh_full_destroy(_demo->mesh_bank[i]);
 }
