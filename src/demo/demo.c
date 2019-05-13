@@ -30,8 +30,8 @@ static void move(int chan)
     dvec3_init(1.0, 0.0, 0.0)), _demo->win.framelen);
     dvec3 cam_z = dvec3_muls(dmat4_mul_dvec3(_demo->world.camera->trans.world_rot,
     dvec3_init(0.0, 0.0, 1.0)), _demo->win.framelen);
-    double x_ratio = (abs(x) > 4) ? ((double)x / 128.0) : 0.0;
-    double y_ratio = (abs(y) > 4) ? ((double)y / 128.0) : 0.0;
+    double x_ratio = (abs(x) > 8) ? ((double)x / 128.0) : 0.0;
+    double y_ratio = (abs(y) > 8) ? ((double)y / 128.0) : 0.0;
     x_ratio *= 10.0;
     y_ratio *= 10.0;
 
@@ -39,8 +39,8 @@ static void move(int chan)
     _demo->world.player->trans.pos = dvec3_sub(_demo->world.player->trans.pos, dvec3_muls(cam_z, y_ratio));
     x = PAD_SubStickX(chan);
     y = PAD_SubStickY(chan);
-    x_ratio = (abs(x) > 16) ? ((double)x / 128.0) : 0.0;
-    y_ratio = (abs(y) > 16) ? ((double)y / 128.0) : 0.0;
+    x_ratio = (abs(x) > 8) ? ((double)x / 128.0) : 0.0;
+    y_ratio = (abs(y) > 8) ? ((double)y / 128.0) : 0.0;
     x_ratio *= 3.0;
     y_ratio *= 3.0;
 

@@ -69,59 +69,64 @@ int BuildLists(GXTexObj texture) {
 		GX_BeginDispList(boxList[i],896);
 		GX_Begin(GX_QUADS,GX_VTXFMT0,24); // Start drawing
 			// Bottom face
-			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-            GX_TexCoord2f32(1.0f,1.0f); // Top right
-			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-            GX_TexCoord2f32(0.0f,1.0f); // Top left
-			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-            GX_TexCoord2f32(0.0f,0.0f); // Bottom left
 			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
             GX_TexCoord2f32(1.0f,0.0f); // Bottom right
-			// Front face
-			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
 			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
-			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(1.0f,1.0f); // Top right
+            GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+            GX_TexCoord2f32(0.0f,1.0f); // Top left
+			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+            GX_TexCoord2f32(1.0f,1.0f); // Top right
+
+			// Front face
 			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(0.0f,1.0f); // Top left
-			// Back face
-			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+
+			// Back face
+			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,1.0f); // Top left
 			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(1.0f,1.0f); // Top right
-			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,1.0f); // Top left
-			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
-			// Right face
-			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
-			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(1.0f,1.0f); // Top right
-			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,1.0f); // Top left
+
+			// Right face
 			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,1.0f); // Top left
+			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+
 			// Left face
-			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,0.0f); // Bottom right
-			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(1.0f,0.0f); // Top right
-			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(1.0f,1.0f); // Top left
 			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(0.0f,1.0f); // Bottom left
-			// Top face
-			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			GX_TexCoord2f32(0.0f,1.0f); // Top left
 			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			GX_TexCoord2f32(0.0f,0.0f); // Bottom left
-			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			GX_TexCoord2f32(1.0f,0.0f); // Bottom rught
+			 GX_TexCoord2f32(1.0f,1.0f); // Top left
+			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,0.0f); // Top right
+			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,0.0f); // Bottom right
+
+			// Top face
 			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_TexCoord2f32(0.0f,1.0f); // Top left
 		GX_End();         // Done drawing quads
 		// GX_EndDispList() returns the size of the display list, so store that value and use it with GX_CallDispList().
 		boxSize[i] = GX_EndDispList(); // Done building the box list
