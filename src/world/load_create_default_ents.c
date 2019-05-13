@@ -36,10 +36,10 @@ static void set_sword(entity3 *cam)
 static void player_set_trans(entity3 *player)
 {
     player->trans.is_static = 0;
-    player->trans.is_physics = 1;
-    player->trans.is_collision = 1;
+    //player->trans.is_physics = 1;
+    //player->trans.is_collision = 1;
     player->trans.slide_threshold = 0.8;
-    player->trans.pos = dvec3_init(100.0, 64.0, 100.0);
+    player->trans.pos = dvec3_init(0.0, 0.0, 0.0);
     entity3_add_trigger(player, trigger_create(dvec3_init(-0.5, 0.0, -0.5),
     dvec3_init(0.5, 1.75, 0.5), TRIGGER_ON_HIT_PLAYER));
     entity3_trans_update(player);

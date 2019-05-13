@@ -36,35 +36,27 @@ static void mesh_full_refresh(mesh_full_t *mesh)
 		GX_End();
 		mesh->mesh->gpu.disp_list_size = GX_EndDispList();
 		if (mesh->mesh->gpu.disp_list_size == 0)
-            error_display("Error while refresing mesh.\n");
+            error_display("Error while refresing mesh (cannot end display list).");
         //else
         //    error_display("Mesh successfully refreshed.\n");
         mesh->mesh->gpu.do_reupload = 0;
     }
 }
 
-static void render_obj_draw(render_obj_t render, dmat4 mvp, dmat4 world,
-dmat4 rot)
+static void render_obj_draw(render_obj_t render, dmat4 world, dmat4 world_rot)
 {
+    dmat4 wv;
+    Mtx wv_mtx;
+    Mtx wv_rot_mtx;
+
+    dmat4_mul(_demo->cam.mvp.view, world, wv);
+    dmat4_Mtx(wv, wv_mtx);
+    dmat4_Mtx(world_rot, wv_rot_mtx);
+    GX_LoadPosMtxImm(wv_mtx, GX_PNMTX0);
     mesh_full_refresh(render.mesh.m);
-    if (render.mesh.m->has_ext) {
-        if (_demo->material[render.material].is_transparent)
-            return render_delay_call((render_call_t){render.material,
-            dmat4_dmat4_w(mvp), dmat4_dmat4_w(world), dmat4_dmat4_w(rot),
-            render.mesh.m->gpu.vertex_array, render.mesh.m->ext_count});
-        _demo->material[render.material].world(mvp, world, rot);
-        //glBindVertexArray(render.mesh.m->gpu.vertex_array);
-        //glDrawArrays(GL_TRIANGLES, 0, render.mesh.m->ext_count);
-    } else {
-        if (_demo->material[render.material].is_transparent)
-            return render_delay_call((render_call_t){render.material,
-            dmat4_dmat4_w(mvp), dmat4_dmat4_w(world), dmat4_dmat4_w(rot),
-            render.mesh.m->mesh->gpu.vertex_array,
-            render.mesh.m->mesh->vertex_count});
-        _demo->material[render.material].entity(mvp, world, rot);
-        //glBindVertexArray(render.mesh.m->mesh->gpu.vertex_array);
-        //glDrawArrays(GL_TRIANGLES, 0, render.mesh.m->mesh->vertex_count);
-    }
+    _demo->material[render.material].entity(wv, world, world_rot);
+    GX_CallDispList(render.mesh.m->mesh->gpu.disp_list, render.mesh.m->mesh->gpu.disp_list_size);
+    //error_display("Dsiplaying %d, size: %u", render.material, render.mesh.m->mesh->gpu.disp_list_size);
 }
 
 static size_t get_max_lod(render_obj_lod_dist_t lod, double dist)
@@ -95,7 +87,6 @@ void entity3_render(entity3 *ent, dmat4 vp)
 {
     size_t max_lod = get_max_lod(ent->lod_dist, get_ent_dist(ent));
     size_t chosen = ~0UL;
-    dmat4 mvp;
 
     if ((max_lod == 0) && ent->render_is_rec)
         return;
@@ -106,7 +97,5 @@ void entity3_render(entity3 *ent, dmat4 vp)
             chosen = i;
     if (chosen == ~0UL)
         return;
-    dmat4_mul(vp, ent->trans.world, mvp);
-    render_obj_draw(ent->render[chosen],
-    mvp, ent->trans.world, ent->trans.world_rot);
+    render_obj_draw(ent->render[chosen], ent->trans.world, ent->trans.world_rot);
 }

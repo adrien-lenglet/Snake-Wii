@@ -26,3 +26,10 @@ dvec3 dmat4_trans(dmat4 src)
 {
     return (dvec3){src[3][0], src[3][1], src[3][2]};
 }
+
+void dmat4_Mtx(dmat4 src, Mtx dst)
+{
+    for (size_t i = 0; i < 3; i++)
+        for (size_t j = 0; j < 4; j++)
+            guMtxRowCol(dst, i, j) = src[j][i];
+}

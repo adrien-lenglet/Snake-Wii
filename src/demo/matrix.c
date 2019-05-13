@@ -62,16 +62,10 @@ void shader_set(shader_t shader, dmat4 mvp, dmat4 world, dmat4 rot)
 
 void refresh_vp(demo_t *demo)
 {
-    proj_t proj_struct = {0.3f, 4094.0f * 4, 90.0f, 16.0f / 9.0f};
-    proj_t ortho_struct = proj_struct;
+    Mtx44 proj;
 
-    ortho_struct.fov_w = 10.0f;
-    if (demo->cam.proj == PROJ_TYPE_PERSPECTIVE)
-        dmat4_perspective(proj_struct, demo->cam.mvp.proj);
-    else
-        dmat4_ortho(ortho_struct, demo->cam.mvp.proj);
     entity3_update_trans_inv(demo->world.camera);
     dmat4_copy(demo->world.camera->trans.world_inv, demo->cam.mvp.view);
-    dmat4_mul(demo->cam.mvp.proj, demo->cam.mvp.view, demo->cam.mvp.vp);
-    send_uniform();
+    guPerspective(proj, 90.0f, (f32)_demo->win.w /_demo->win.h , 0.1f, 1000.0f);
+    GX_LoadProjectionMtx(proj, GX_PERSPECTIVE);
 }

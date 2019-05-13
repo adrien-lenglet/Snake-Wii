@@ -142,10 +142,12 @@ int BuildLists(GXTexObj texture) {
 	return 0;
 }
 
-void DrawScene(Mtx view) {
+void DrawScene(void) {
+    Mtx view;
 	Mtx model,modelview; // Various matrices
 	guVector axis;                       // Axis to rotate on
 
+    dmat4_Mtx(_demo->cam.mvp.view, view);
 	// BUG: Light ignores underlying polygon colors.
 	SetLight(view); // Setup the light
 
@@ -165,7 +167,7 @@ void DrawScene(Mtx view) {
 
 			guMtxTransApply(model,model,(1.4f-((float)yloop*1.4f)),(((6.0f-(float)yloop)*2.2f)-7.0f),-20.0f+((float)xloop*2.8f));
 
-			guMtxConcat(model,view,modelview);
+			guMtxConcat(view,model,modelview);
 			GX_LoadPosMtxImm(modelview, GX_PNMTX0);
 
 			GX_CallDispList(boxList[yloop-1],boxSize[yloop-1]); // Draw the box
@@ -232,7 +234,7 @@ void init(void)
 		GX_SetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);
 	}
 
-	GX_SetCullMode(GX_CULL_NONE);
+	GX_SetCullMode(GX_CULL_BACK);
 	GX_CopyDisp(_demo->buf.frameBuffer[_demo->buf.fb],GX_TRUE);
 	GX_SetDispCopyGamma(GX_GM_1_0);
 
@@ -274,6 +276,13 @@ void init(void)
 	}
     CON_Init(_demo->buf.frameBuffer[0], 20, 20, rmode->fbWidth, rmode->efbHeight, rmode->fbWidth * VI_DISPLAY_PIX_SZ);
     VIDEO_SetBlack(FALSE);
+
+    _demo->win.w = rmode->viWidth;
+    _demo->win.h = rmode->viHeight;
+    GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
+    GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
+    GX_SetAlphaUpdate(GX_TRUE);
+    GX_SetColorUpdate(GX_TRUE);
 }
 
 void quit(void)

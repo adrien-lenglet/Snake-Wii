@@ -18,45 +18,63 @@ extern u32 yloop;        // Loop for y axis
 extern f32 xrot; // Rotates cube on the x axis
 extern f32 yrot; // Rotates cube on the y axis
 
-void DrawScene  (Mtx view);
+void DrawScene  ();
 int  BuildLists (GXTexObj texture);
 void SetLight   (Mtx view);
+
+static void move(int chan)
+{
+    u16 directions = PAD_ButtonsHeld(chan);
+    s8 x = PAD_StickX(chan), y = PAD_StickY(chan);
+    dvec3 cam_x = dvec3_muls(dmat4_mul_dvec3(_demo->world.camera->trans.world_rot,
+    dvec3_init(1.0, 0.0, 0.0)), _demo->win.framelen);
+    dvec3 cam_z = dvec3_muls(dmat4_mul_dvec3(_demo->world.camera->trans.world_rot,
+    dvec3_init(0.0, 0.0, 1.0)), _demo->win.framelen);
+    double x_ratio = (abs(x) > 4) ? ((double)x / 128.0) : 0.0;
+    double y_ratio = (abs(y) > 4) ? ((double)y / 128.0) : 0.0;
+    x_ratio *= 10.0;
+    y_ratio *= 10.0;
+
+    _demo->world.player->trans.pos = dvec3_add(_demo->world.player->trans.pos, dvec3_muls(cam_x, x_ratio));
+    _demo->world.player->trans.pos = dvec3_sub(_demo->world.player->trans.pos, dvec3_muls(cam_z, y_ratio));
+    x = PAD_SubStickX(chan);
+    y = PAD_SubStickY(chan);
+    x_ratio = (abs(x) > 16) ? ((double)x / 128.0) : 0.0;
+    y_ratio = (abs(y) > 16) ? ((double)y / 128.0) : 0.0;
+    x_ratio *= 3.0;
+    y_ratio *= 3.0;
+
+    _demo->world.camera->trans.rot.x -= y_ratio * _demo->win.framelen;
+    _demo->world.player->trans.rot.y += x_ratio * _demo->win.framelen;
+    //printf("%x: %d, %d\n", directions, PAD_StickX(0), PAD_StickY(0));
+}
 
 void demo_loop(demo_t *demo)
 {
     (void)demo;
-	guVector cam = {0.0F, 0.0F, 0.0F},
-			up = {0.0F, 1.0F, 0.0F},
-		  look = {0.0F, 0.0F, -1.0F};
-	Mtx view; // view and perspective matrices
-	Mtx44 perspective;
 
     //main_quest_start();
     world_load_map();
-	guLookAt(view, &cam, &up, &look);
-	f32 w = rmode->viWidth;
-	f32 h = rmode->viHeight;
     //printf("That is a typical error msg, taking up to 4MB OF VRAM. Please note this has nothing to do with you, now you can reboot your system.");
 	while(1) {
-        guPerspective(perspective, 40.0f, w /h , 0.1f, 1000.0f);
-        GX_LoadProjectionMtx(perspective, GX_PERSPECTIVE);
+        //guPerspective(perspective, 40.0f, w /h , 0.1f, 1000.0f);
+        //GX_LoadProjectionMtx(perspective, GX_PERSPECTIVE);
 
 		WPAD_ScanPads();
         PAD_ScanPads();
-		if(WPAD_ButtonsDown(0) & WPAD_BUTTON_HOME) exit(0);
-
+		if(WPAD_ButtonsDown(0) & WPAD_BUTTON_HOME)
+            exit(0);
 		u16 directions = PAD_ButtonsHeld(0);
-        (void)directions;
+        if (directions & PAD_BUTTON_START)
+            exit(0);
+        move(0);
+        //_demo->world.player->trans.pos.z -= 0.1;
 
         world_update();
 		// draw things
-		DrawScene(view);
+		DrawScene();
         world_render();
 
-		GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
-		GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
-		GX_SetAlphaUpdate(GX_TRUE);
-		GX_SetColorUpdate(GX_TRUE);
 		GX_CopyDisp(_demo->buf.frameBuffer[_demo->buf.fb],GX_TRUE);
 
 		GX_DrawDone();

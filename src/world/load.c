@@ -59,6 +59,6 @@ void world_load_map(void)
     resolve_refs();
     if (do_respawn)
         player_respawn(_demo->world.player);
-    player_update_weapon();
+    //player_update_weapon();
     vec_msg_entry_flush(&_demo->buf.msgs);
 }
