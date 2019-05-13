@@ -25,6 +25,7 @@ void SetLight   (Mtx view);
 static void move(int chan)
 {
     u16 directions = PAD_ButtonsHeld(chan);
+    (void)directions;
     s8 x = PAD_StickX(chan), y = PAD_StickY(chan);
     dvec3 cam_x = dvec3_muls(dmat4_mul_dvec3(_demo->world.camera->trans.world_rot,
     dvec3_init(1.0, 0.0, 0.0)), _demo->win.framelen);
@@ -66,7 +67,7 @@ void demo_loop(demo_t *demo)
             exit(0);
 		u16 directions = PAD_ButtonsHeld(0);
         if (directions & PAD_BUTTON_START)
-            exit(0);
+            return;
         move(0);
         //_demo->world.player->trans.pos.z -= 0.1;
 

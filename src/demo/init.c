@@ -21,31 +21,36 @@ f32 xrot = 0.0f; // Rotates cube on the x axis
 f32 yrot = 0.0f; // Rotates cube on the y axis
 
 static GXColor lightColor[] = {
-	{0x80,0x80,0x80,0xFF}, // Light color
-	{0x80,0x80,0x80,0xFF}, // Ambient color
-	{0x80,0x80,0x80,0xFF}  // Mat color
+	{0xFF, 0xFF, 0x00,0xFF}, // Light color
+	{0x10, 0x30, 0x40,0xFF}, // Ambient color
+	{0xFF, 0xFF, 0xFF,0xFF}  // Mat color
 };
 
 void SetLight(Mtx view)
 {
+    (void)view;
 	guVector lpos;
+	guVector ldir = {0.0, 0.0, -1.0};
 	GXLightObj lobj;
 
 	lpos.x = 0;
 	lpos.y = 0;
-	lpos.z = 2.0f;
+	lpos.z = 0.0f;
 
-	guVecMultiply(view,&lpos,&lpos);
+	//guVecMultiply(view, &lpos, &lpos);
 
-	GX_InitLightPos(&lobj,lpos.x,lpos.y,lpos.z);
-	GX_InitLightColor(&lobj,lightColor[0]);
-	GX_LoadLightObj(&lobj,GX_LIGHT0);
+	GX_InitLightPos(&lobj, lpos.x, lpos.y, lpos.z);
+	GX_InitLightColor(&lobj, lightColor[0]);
+    GX_InitLightDir(&lobj, ldir.x, ldir.y, ldir.z);
+    GX_InitLightSpot(&lobj, 40.0, GX_SP_COS);
+    GX_InitLightDistAttn(&lobj, 8.0, 0.9, GX_DA_STEEP);
+	GX_LoadLightObj(&lobj, GX_LIGHT0);
 
 	// set number of rasterized color channels
 	GX_SetNumChans(1);
-	GX_SetChanCtrl(GX_COLOR0A0,GX_ENABLE,GX_SRC_VTX,GX_SRC_VTX,GX_LIGHT0,GX_DF_CLAMP,GX_AF_NONE);
-	GX_SetChanAmbColor(GX_COLOR0A0,lightColor[1]);
-	GX_SetChanMatColor(GX_COLOR0A0,lightColor[2]);
+	GX_SetChanCtrl(GX_COLOR0A0, GX_ENABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT0, GX_DF_CLAMP, GX_AF_SPOT);
+	GX_SetChanAmbColor(GX_COLOR0A0, lightColor[1]);
+	GX_SetChanMatColor(GX_COLOR0A0, lightColor[2]);
 }
 
 int BuildLists(GXTexObj texture) {
@@ -135,7 +140,6 @@ int BuildLists(GXTexObj texture) {
 
 	// setup texture coordinate generation
 	// args: texcoord slot 0-7, matrix type, source to generate texture coordinates from, matrix to use
-	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
 
 	// Set up TEV to paint the textures properly.
 	GX_SetTevOp(GX_TEVSTAGE0,GX_MODULATE);
@@ -172,6 +176,7 @@ void DrawScene(void) {
 
 			guMtxTransApply(model,model,(1.4f-((float)yloop*1.4f)),(((6.0f-(float)yloop)*2.2f)-7.0f),-20.0f+((float)xloop*2.8f));
 
+            GX_LoadNrmMtxImm(model, GX_PNMTX0);
 			guMtxConcat(view,model,modelview);
 			GX_LoadPosMtxImm(modelview, GX_PNMTX0);
 
