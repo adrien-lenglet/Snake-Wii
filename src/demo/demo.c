@@ -37,7 +37,7 @@ static void move(int chan)
     y_ratio *= 10.0;
 
     _demo->world.player->trans.pos = dvec3_add(_demo->world.player->trans.pos, dvec3_muls(cam_x, x_ratio));
-    _demo->world.player->trans.pos = dvec3_sub(_demo->world.player->trans.pos, dvec3_muls(cam_z, y_ratio));
+    _demo->world.player->trans.pos = dvec3_add(_demo->world.player->trans.pos, dvec3_muls(cam_z, y_ratio));
     x = PAD_SubStickX(chan);
     y = PAD_SubStickY(chan);
     x_ratio = (abs(x) > 8) ? ((double)x / 128.0) : 0.0;
@@ -45,34 +45,66 @@ static void move(int chan)
     x_ratio *= 3.0;
     y_ratio *= 3.0;
 
-    _demo->world.camera->trans.rot.x -= y_ratio * _demo->win.framelen;
-    _demo->world.player->trans.rot.y += x_ratio * _demo->win.framelen;
+    _demo->world.camera->trans.rot.x += y_ratio * _demo->win.framelen;
+    _demo->world.player->trans.rot.y -= x_ratio * _demo->win.framelen;
     //printf("%x: %d, %d\n", directions, PAD_StickX(0), PAD_StickY(0));
+//_demo->world.player->trans.pos.z += 0.01;
+}
+
+static void snake_rep_copy(void)
+{
+    _demo->cam.r_prev = _demo->cam.r;
+    _demo->cam.u_prev = _demo->cam.u;
+    _demo->cam.f_prev = _demo->cam.f;
+    _demo->cam.rot_anim = 0;
+}
+
+static void rot_vec(ivec3 *a, ivec3 *b, int is_cw)
+{
+    ivec3 a_b = *a;
+    ivec3 b_b = *b;
+
+    snake_rep_copy();
+    *a = ivec3_muls(b_b, is_cw ? 1 : -1);
+    *b = ivec3_muls(a_b, is_cw ? -1 : 1);
 }
 
 void demo_loop(demo_t *demo)
 {
     (void)demo;
+    size_t frame = 0;
+    u16 dir, dir_prev = 0;
+    u16 dir_press;
 
     //main_quest_start();
     world_load_map();
     //printf("That is a typical error msg, taking up to 4MB OF VRAM. Please note this has nothing to do with you, now you can reboot your system.");
 	while(1) {
-        //guPerspective(perspective, 40.0f, w /h , 0.1f, 1000.0f);
-        //GX_LoadProjectionMtx(perspective, GX_PERSPECTIVE);
-
 		WPAD_ScanPads();
         PAD_ScanPads();
 		if(WPAD_ButtonsDown(0) & WPAD_BUTTON_HOME)
             exit(0);
-		u16 directions = PAD_ButtonsHeld(0);
-        if (directions & PAD_BUTTON_START)
+        dir_prev = dir;
+		dir = PAD_ButtonsHeld(0);
+        dir_press = (~dir_prev) & dir;
+        if (dir & PAD_BUTTON_START)
             return;
+        if (dir_press & PAD_BUTTON_LEFT)
+            rot_vec(&_demo->cam.f, &_demo->cam.r, 0);
+        if (dir_press & PAD_BUTTON_RIGHT)
+            rot_vec(&_demo->cam.f, &_demo->cam.r, 1);
+        if (dir_press & PAD_BUTTON_UP)
+            rot_vec(&_demo->cam.f, &_demo->cam.u, 1);
+        if (dir_press & PAD_BUTTON_DOWN)
+            rot_vec(&_demo->cam.f, &_demo->cam.u, 0);
+        frame++;
+        if (frame >= 60) {
+            _demo->cam.pos = ivec3_add(_demo->cam.pos, _demo->cam.f);
+            frame = 0;
+        }
         move(0);
-        //_demo->world.player->trans.pos.z -= 0.1;
 
         world_update();
-		// draw things
 		DrawScene();
         world_render();
 

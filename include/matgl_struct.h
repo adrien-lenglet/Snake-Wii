@@ -50,6 +50,12 @@ typedef struct {
 } ivec2;
 
 typedef struct {
+    int32_t x;
+    int32_t y;
+    int32_t z;
+} ivec3;
+
+typedef struct {
     ssize_t x;
     ssize_t y;
 } ssize2;

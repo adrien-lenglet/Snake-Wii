@@ -28,6 +28,7 @@ static GXColor lightColor[] = {
 
 void SetLight(Mtx view)
 {
+    return;
     (void)view;
 	guVector lpos;
 	guVector ldir = {0.0, 0.0, -1.0};
@@ -74,64 +75,59 @@ int BuildLists(GXTexObj texture) {
 		GX_BeginDispList(boxList[i],896);
 		GX_Begin(GX_QUADS,GX_VTXFMT0,24); // Start drawing
 			// Bottom face
-			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-            GX_TexCoord2f32(1.0f,0.0f); // Bottom right
-			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-            GX_TexCoord2f32(0.0f,0.0f); // Bottom left
-			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-            GX_TexCoord2f32(0.0f,1.0f); // Top left
 			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
             GX_TexCoord2f32(1.0f,1.0f); // Top right
-
-			// Front face
-			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,1.0f); // Top left
-			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+            GX_TexCoord2f32(0.0f,1.0f); // Top left
 			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+            GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+            GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+			// Front face
 			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
-
-			// Back face
-			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
-			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,1.0f); // Top left
-			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,1.0f); // Top left
+			// Back face
 			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
-
-			// Right face
-			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
-			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,1.0f); // Top left
-			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,1.0f); // Top left
+			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			// Right face
 			GX_Position3f32( 1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(1.0f,0.0f); // Bottom right
-
+			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,1.0f); // Top right
+			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,1.0f); // Top left
+			GX_Position3f32( 1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,0.0f); // Bottom left
 			// Left face
-			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(0.0f,1.0f); // Bottom left
-			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(1.0f,1.0f); // Top left
-			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			 GX_TexCoord2f32(1.0f,0.0f); // Top right
 			GX_Position3f32(-1.0f,-1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			 GX_TexCoord2f32(0.0f,0.0f); // Bottom right
-
-			// Top face
-			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			GX_TexCoord2f32(1.0f,1.0f); // Top right
-			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			GX_TexCoord2f32(1.0f,0.0f); // Bottom right
+			GX_Position3f32(-1.0f,-1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(1.0f,0.0f); // Top right
 			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
-			GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			 GX_TexCoord2f32(1.0f,1.0f); // Top left
+			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			 GX_TexCoord2f32(0.0f,1.0f); // Bottom left
+			// Top face
 			GX_Position3f32(-1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
 			GX_TexCoord2f32(0.0f,1.0f); // Top left
+			GX_Position3f32(-1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_TexCoord2f32(0.0f,0.0f); // Bottom left
+			GX_Position3f32( 1.0f, 1.0f, 1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_TexCoord2f32(1.0f,0.0f); // Bottom rught
+			GX_Position3f32( 1.0f, 1.0f,-1.0f); GX_Normal3f32((f32)0,(f32)0,(f32)1);
+			GX_TexCoord2f32(1.0f,1.0f); // Top right
 		GX_End();         // Done drawing quads
 		// GX_EndDispList() returns the size of the display list, so store that value and use it with GX_CallDispList().
 		boxSize[i] = GX_EndDispList(); // Done building the box list
@@ -154,27 +150,27 @@ int BuildLists(GXTexObj texture) {
 void DrawScene(void) {
     Mtx view;
 	Mtx model,modelview; // Various matrices
-	guVector axis;                       // Axis to rotate on
+	//guVector axis;                       // Axis to rotate on
 
     dmat4_Mtx(_demo->cam.mvp.view, view);
 	// BUG: Light ignores underlying polygon colors.
 	SetLight(view); // Setup the light
 
-	for (yloop = 1; yloop < 6; yloop++) { // Loop through the y plane
+	for (yloop = 0; yloop < 6; yloop++) { // Loop through the y plane
 		for (xloop = 0; xloop < yloop; xloop++) { // Loop through the x plane
 			// Position the cubes on the screen
 			guMtxIdentity(model);
 
-			axis.x = 1.0f;
+			/*axis.x = 1.0f;
 			axis.y = 0;
-			axis.z = 0;
-			guMtxRotAxisDeg(model,&axis,(45.0f-(2.0f*(float)yloop)+xrot)); // Tilt the cubes up and down
+			axis.z = 0;*/
+			//guMtxRotAxisDeg(model,&axis,(45.0f-(2.0f*(float)yloop)+xrot)); // Tilt the cubes up and down
 
-			axis.x = 0;
-			axis.y = 1.0f;
-			guMtxRotAxisDeg(model,&axis,(45.0f+yrot)); // Spin cubes left and right
+			/*axis.x = 0;
+			axis.y = 1.0f;*/
+			//guMtxRotAxisDeg(model,&axis,(45.0f+yrot)); // Spin cubes left and right
 
-			guMtxTransApply(model,model,(1.4f-((float)yloop*1.4f)),(((6.0f-(float)yloop)*2.2f)-7.0f),-20.0f+((float)xloop*2.8f));
+			guMtxTransApply(model,model, (float)yloop * 2.0f, xloop * 2.0, (float)xloop * 2.0f);
 
             GX_LoadNrmMtxImm(model, GX_PNMTX0);
 			guMtxConcat(view,model,modelview);

@@ -36,3 +36,23 @@ void dmat4_ortho(proj_t proj, dmat4 res)
     res[3][2] = - (proj.far_plane + proj.near_plane) /
     (proj.far_plane - proj.near_plane);
 }
+
+void dmat4_lookdir(dvec3 p, dvec3 f, dvec3 u, dmat4 res)
+{
+    f = dvec3_normalize(f);
+    u = dvec3_normalize(u);
+    dvec3 s = dvec3_normalize(dvec3_cross(u, f));
+
+    res[0][0] = s.x;
+    res[1][0] = s.y;
+    res[2][0] = s.z;
+    res[0][1] = u.x;
+    res[1][1] = u.y;
+    res[2][1] = u.z;
+    res[0][2] = f.x;
+    res[1][2] = f.y;
+    res[2][2] = f.z;
+    res[3][0] = -dvec3_dot(s, p);
+    res[3][1] = -dvec3_dot(u, p);
+    res[3][2] = -dvec3_dot(f, p);
+}

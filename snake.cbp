@@ -124,792 +124,1058 @@
 		<Unit filename="src/demo/arg.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/arg.d" />
 		<Unit filename="src/demo/demo.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/demo.d" />
 		<Unit filename="src/demo/demo_init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/demo_init.d" />
 		<Unit filename="src/demo/demo_init_win.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/demo_init_win.d" />
 		<Unit filename="src/demo/demo_player.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/demo_player.d" />
 		<Unit filename="src/demo/display.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/display.d" />
 		<Unit filename="src/demo/framerate.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/framerate.d" />
 		<Unit filename="src/demo/init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/init.d" />
 		<Unit filename="src/demo/input.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/input.d" />
 		<Unit filename="src/demo/matrix.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/matrix.d" />
 		<Unit filename="src/demo/poll_events.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/poll_events.d" />
 		<Unit filename="src/demo/poll_mouse_pos.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/poll_mouse_pos.d" />
 		<Unit filename="src/demo/render.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/render.d" />
 		<Unit filename="src/demo/time.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/time.d" />
 		<Unit filename="src/demo/vertex_array.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/demo/vertex_array.d" />
 		<Unit filename="src/dungeons/attrib.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/dungeons/attrib.d" />
 		<Unit filename="src/dungeons/display.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/dungeons/display.d" />
 		<Unit filename="src/dungeons/gen.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/dungeons/gen.d" />
 		<Unit filename="src/dungeons/init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/dungeons/init.d" />
 		<Unit filename="src/editor/editor.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/editor/editor.d" />
 		<Unit filename="src/entity/bind.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/bind.d" />
 		<Unit filename="src/entity/default.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/default.d" />
 		<Unit filename="src/entity/entity.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/entity.d" />
 		<Unit filename="src/entity/kill_ent.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/kill_ent.d" />
 		<Unit filename="src/entity/move.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/move.d" />
 		<Unit filename="src/entity/physics.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/physics.d" />
 		<Unit filename="src/entity/physics_inter.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/physics_inter.d" />
 		<Unit filename="src/entity/player.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/player.d" />
 		<Unit filename="src/entity/render.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/render.d" />
 		<Unit filename="src/entity/render_call.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/render_call.d" />
 		<Unit filename="src/entity/render_delayed.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/render_delayed.d" />
 		<Unit filename="src/entity/set_col.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/set_col.d" />
 		<Unit filename="src/entity/set_render.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/set_render.d" />
 		<Unit filename="src/entity/set_tag.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/set_tag.d" />
 		<Unit filename="src/entity/trigger/fun_player.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/trigger/fun_player.d" />
 		<Unit filename="src/entity/trigger/init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/trigger/init.d" />
 		<Unit filename="src/entity/trigger/trigger.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/trigger/trigger.d" />
 		<Unit filename="src/entity/trigger/update.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/trigger/update.d" />
 		<Unit filename="src/entity/trigger/vec_trigger.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/trigger/vec_trigger.d" />
 		<Unit filename="src/entity/update.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/update.d" />
 		<Unit filename="src/entity/update_global.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/update_global.d" />
 		<Unit filename="src/entity/update_global_oob.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/update_global_oob.d" />
 		<Unit filename="src/entity/update_tag/ennemy.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/update_tag/ennemy.d" />
 		<Unit filename="src/entity/update_tag/init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/update_tag/init.d" />
 		<Unit filename="src/entity/update_tag/player.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/update_tag/player.d" />
 		<Unit filename="src/entity/update_tag/player_poll.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/update_tag/player_poll.d" />
 		<Unit filename="src/entity/update_tag/player_state.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/update_tag/player_state.d" />
 		<Unit filename="src/entity/update_trans_inv.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/update_trans_inv.d" />
 		<Unit filename="src/entity/vec_entity.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/vec_entity.d" />
 		<Unit filename="src/entity/vec_rtx_triangle_ref.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/entity/vec_rtx_triangle_ref.d" />
 		<Unit filename="src/err/err_loop.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/err/err_loop.d" />
 		<Unit filename="src/file/chunk_load.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/chunk_load.d" />
 		<Unit filename="src/file/read/arr_dvec3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/read/arr_dvec3.d" />
 		<Unit filename="src/file/read/chunk.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/read/chunk.d" />
 		<Unit filename="src/file/read/entity3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/read/entity3.d" />
 		<Unit filename="src/file/read/gen.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/read/gen.d" />
 		<Unit filename="src/file/read/mesh_full_ref.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/read/mesh_full_ref.d" />
 		<Unit filename="src/file/read/read.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/read/read.d" />
 		<Unit filename="src/file/read/trigger.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/read/trigger.d" />
 		<Unit filename="src/file/write/chunk.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/write/chunk.d" />
 		<Unit filename="src/file/write/entity3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/write/entity3.d" />
 		<Unit filename="src/file/write/gen.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/write/gen.d" />
 		<Unit filename="src/file/write/mesh_full_ref.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/write/mesh_full_ref.d" />
 		<Unit filename="src/file/write/trigger.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/write/trigger.d" />
 		<Unit filename="src/file/write/write.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/file/write/write.d" />
 		<Unit filename="src/game.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/game.d" />
 		<Unit filename="src/global.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/global.d" />
 		<Unit filename="src/gpu/gl_loader.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/gpu/gl_loader.d" />
 		<Unit filename="src/gpu/gpu_compute_lightmap.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/gpu/gpu_compute_lightmap.d" />
 		<Unit filename="src/gpu/material_init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/gpu/material_init.d" />
 		<Unit filename="src/gpu/shader_compute.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/gpu/shader_compute.d" />
 		<Unit filename="src/gpu/shader_load.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/gpu/shader_load.d" />
 		<Unit filename="src/gpu/shader_vert_frag.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/gpu/shader_vert_frag.d" />
 		<Unit filename="src/iu/constructor.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/constructor.d" />
 		<Unit filename="src/iu/draw.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/draw.d" />
 		<Unit filename="src/iu/entities.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/entities.d" />
 		<Unit filename="src/iu/entity_size.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/entity_size.d" />
 		<Unit filename="src/iu/invent/invent_desc_tools.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/invent/invent_desc_tools.d" />
 		<Unit filename="src/iu/invent/invent_event.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/invent/invent_event.d" />
 		<Unit filename="src/iu/invent/invent_linked_action.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/invent/invent_linked_action.d" />
 		<Unit filename="src/iu/invent/invent_loop.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/invent/invent_loop.d" />
 		<Unit filename="src/iu/invent/invent_main_action.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/invent/invent_main_action.d" />
 		<Unit filename="src/iu/invent/invent_tools.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/invent/invent_tools.d" />
 		<Unit filename="src/iu/invent/items_constructor.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/invent/items_constructor.d" />
 		<Unit filename="src/iu/invent/stat_display.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/invent/stat_display.d" />
 		<Unit filename="src/iu/iu.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/iu.d" />
 		<Unit filename="src/iu/msg_entry.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/msg_entry.d" />
 		<Unit filename="src/iu/msg_entry_create.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/msg_entry_create.d" />
 		<Unit filename="src/iu/msg_entry_update.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/msg_entry_update.d" />
 		<Unit filename="src/iu/pause/pause_entities.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/pause/pause_entities.d" />
 		<Unit filename="src/iu/pause/pause_event.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/pause/pause_event.d" />
 		<Unit filename="src/iu/pause/pause_loop.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/pause/pause_loop.d" />
 		<Unit filename="src/iu/quests/display_active_quest.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/quests/display_active_quest.d" />
 		<Unit filename="src/iu/quests/display_quest_ext.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/quests/display_quest_ext.d" />
 		<Unit filename="src/iu/quests/quest_at_check.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/quests/quest_at_check.d" />
 		<Unit filename="src/iu/quests/quest_constructor.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/quests/quest_constructor.d" />
 		<Unit filename="src/iu/quests/quest_dialogues.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/quests/quest_dialogues.d" />
 		<Unit filename="src/iu/quests/quest_init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/quests/quest_init.d" />
 		<Unit filename="src/iu/quests/quest_set.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/quests/quest_set.d" />
 		<Unit filename="src/iu/quests/quest_sys.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/quests/quest_sys.d" />
 		<Unit filename="src/iu/settings/event.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/settings/event.d" />
 		<Unit filename="src/iu/settings/init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/settings/init.d" />
 		<Unit filename="src/iu/settings/setting_set_slider.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/settings/setting_set_slider.d" />
 		<Unit filename="src/iu/settings/settings_entities.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/settings/settings_entities.d" />
 		<Unit filename="src/iu/settings/settings_loop.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/settings/settings_loop.d" />
 		<Unit filename="src/iu/settings/sound_actions.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/settings/sound_actions.d" />
 		<Unit filename="src/iu/settings/sound_gain.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/settings/sound_gain.d" />
 		<Unit filename="src/iu/settings/sound_int.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/settings/sound_int.d" />
 		<Unit filename="src/iu/text/dialogue.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/text/dialogue.d" />
 		<Unit filename="src/iu/text/dialogue_fucntions_ptr.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/text/dialogue_fucntions_ptr.d" />
 		<Unit filename="src/iu/text/font.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/text/font.d" />
 		<Unit filename="src/iu/text/vg_dialogue.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/text/vg_dialogue.d" />
 		<Unit filename="src/iu/text/vg_dialogue_display.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/text/vg_dialogue_display.d" />
 		<Unit filename="src/iu/text/vg_text_constructor.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/text/vg_text_constructor.d" />
 		<Unit filename="src/iu/text/vg_text_display.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/text/vg_text_display.d" />
 		<Unit filename="src/iu/text/vgtext_init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/text/vgtext_init.d" />
 		<Unit filename="src/iu/ui_effect.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/iu/ui_effect.d" />
 		<Unit filename="src/material/blood.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/material/blood.d" />
 		<Unit filename="src/material/grass.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/material/grass.d" />
 		<Unit filename="src/material/skybox.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/material/skybox.d" />
 		<Unit filename="src/material/veg_grass1.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/material/veg_grass1.d" />
 		<Unit filename="src/material/water.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/material/water.d" />
 		<Unit filename="src/material/wood.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/material/wood.d" />
 		<Unit filename="src/math/barycentric/barycentric2.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/barycentric/barycentric2.d" />
 		<Unit filename="src/math/barycentric/barycentric3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/barycentric/barycentric3.d" />
 		<Unit filename="src/math/barycentric/barycentric3_laxist.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/barycentric/barycentric3_laxist.d" />
 		<Unit filename="src/math/circle.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/circle.d" />
 		<Unit filename="src/math/dmat4/conv.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dmat4/conv.d" />
 		<Unit filename="src/math/dmat4/dmat4.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dmat4/dmat4.d" />
 		<Unit filename="src/math/dmat4/inv.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dmat4/inv.d" />
 		<Unit filename="src/math/dmat4/inv_gauss_jordan.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dmat4/inv_gauss_jordan.d" />
 		<Unit filename="src/math/dmat4/mv.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dmat4/mv.d" />
 		<Unit filename="src/math/dmat4/projection.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dmat4/projection.d" />
 		<Unit filename="src/math/dmat4/rot.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dmat4/rot.d" />
 		<Unit filename="src/math/dvec3/bounds.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dvec3/bounds.d" />
 		<Unit filename="src/math/dvec3/conv.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dvec3/conv.d" />
 		<Unit filename="src/math/dvec3/dist.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dvec3/dist.d" />
 		<Unit filename="src/math/dvec3/dvec3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dvec3/dvec3.d" />
 		<Unit filename="src/math/dvec3/linear.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/dvec3/linear.d" />
 		<Unit filename="src/math/dvec3/s.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/math/dvec3/s.d" />
+		<Unit filename="src/math/ivec3/ivec3.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/math/mat4/mat4.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/mat4/mat4.d" />
 		<Unit filename="src/math/mat4/mv.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/mat4/mv.d" />
 		<Unit filename="src/math/mat4/projection.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/mat4/projection.d" />
 		<Unit filename="src/math/ray3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/ray3.d" />
 		<Unit filename="src/math/ray_bounds.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/ray_bounds.d" />
 		<Unit filename="src/math/rect.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/rect.d" />
 		<Unit filename="src/math/spherical.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/spherical.d" />
 		<Unit filename="src/math/ssize2.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/ssize2.d" />
 		<Unit filename="src/math/vec2/extra.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/vec2/extra.d" />
 		<Unit filename="src/math/vec2/linear.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/vec2/linear.d" />
 		<Unit filename="src/math/vec2/vec2.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/vec2/vec2.d" />
 		<Unit filename="src/math/vec3/conv.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/vec3/conv.d" />
 		<Unit filename="src/math/vec3/linear.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/vec3/linear.d" />
 		<Unit filename="src/math/vec3/vec3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/vec3/vec3.d" />
 		<Unit filename="src/math/vec4.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/math/vec4.d" />
 		<Unit filename="src/menu/draw.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/menu/draw.d" />
 		<Unit filename="src/menu/entities.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/menu/entities.d" />
 		<Unit filename="src/menu/event.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/menu/event.d" />
 		<Unit filename="src/menu/intro.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/menu/intro.d" />
 		<Unit filename="src/menu/intro_tools.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/menu/intro_tools.d" />
 		<Unit filename="src/menu/menu.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/menu/menu.d" />
 		<Unit filename="src/menu/setting.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/menu/setting.d" />
 		<Unit filename="src/menu/slider.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/menu/slider.d" />
 		<Unit filename="src/mesh/add.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mesh/add.d" />
 		<Unit filename="src/mesh/bank_init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mesh/bank_init.d" />
 		<Unit filename="src/mesh/full.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mesh/full.d" />
 		<Unit filename="src/mesh/full_add.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mesh/full_add.d" />
 		<Unit filename="src/mesh/full_ref.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mesh/full_ref.d" />
 		<Unit filename="src/mesh/gpu.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mesh/gpu.d" />
 		<Unit filename="src/mesh/gpu_set_attrib.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mesh/gpu_set_attrib.d" />
 		<Unit filename="src/mesh/mesh.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mesh/mesh.d" />
 		<Unit filename="src/mesh/vec_mesh_full.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mesh/vec_mesh_full.d" />
 		<Unit filename="src/mesh/vertex.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/mesh/vertex.d" />
 		<Unit filename="src/misc.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/misc.d" />
 		<Unit filename="src/model/extract_ndx.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/model/extract_ndx.d" />
 		<Unit filename="src/model/model_load.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/model/model_load.d" />
 		<Unit filename="src/model/model_obj_parsing.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/model/model_obj_parsing.d" />
 		<Unit filename="src/model/parse_v.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/model/parse_v.d" />
 		<Unit filename="src/octree/enlarge.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/enlarge.d" />
 		<Unit filename="src/octree/insert.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/insert.d" />
 		<Unit filename="src/octree/light_rtx_thread.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/light_rtx_thread.d" />
 		<Unit filename="src/octree/lumel.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/lumel.d" />
 		<Unit filename="src/octree/octree.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/octree.d" />
 		<Unit filename="src/octree/ray/bound.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/ray/bound.d" />
 		<Unit filename="src/octree/ray/inter.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/ray/inter.d" />
 		<Unit filename="src/octree/ray/inter_laxist.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/ray/inter_laxist.d" />
 		<Unit filename="src/octree/ray/inter_laxist_fast.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/ray/inter_laxist_fast.d" />
 		<Unit filename="src/octree/refresh_vec_rtx_triangle.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/refresh_vec_rtx_triangle.d" />
 		<Unit filename="src/octree/rtx_triangle/inter.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/rtx_triangle/inter.d" />
 		<Unit filename="src/octree/rtx_triangle/update.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/rtx_triangle/update.d" />
 		<Unit filename="src/octree/sub.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/sub.d" />
 		<Unit filename="src/octree/triangle_count.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/triangle_count.d" />
 		<Unit filename="src/octree/triangle_upper.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/octree/triangle_upper.d" />
 		<Unit filename="src/parallel/fence.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/parallel/fence.d" />
 		<Unit filename="src/parallel/send.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/parallel/send.d" />
 		<Unit filename="src/parallel/thread.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/parallel/thread.d" />
 		<Unit filename="src/serial/arr2d_vec3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/arr2d_vec3.d" />
 		<Unit filename="src/serial/arr2d_vec3_copy.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/arr2d_vec3_copy.d" />
 		<Unit filename="src/serial/get_file_data.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/get_file_data.d" />
 		<Unit filename="src/serial/gpu_serial.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/gpu_serial.d" />
 		<Unit filename="src/serial/nbr_tools.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/nbr_tools.d" />
 		<Unit filename="src/serial/octree_serialize.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/octree_serialize.d" />
 		<Unit filename="src/serial/octree_serialize_size.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/octree_serialize_size.d" />
 		<Unit filename="src/serial/putnbr.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/putnbr.d" />
 		<Unit filename="src/serial/random.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/random.d" />
 		<Unit filename="src/serial/rtx_triangle.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/rtx_triangle.d" />
 		<Unit filename="src/serial/str.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/str.d" />
 		<Unit filename="src/serial/str_tools.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/str_tools.d" />
 		<Unit filename="src/serial/vec_rtx_serial.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/vec_rtx_serial.d" />
 		<Unit filename="src/serial/vec_rtx_triangle.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/vec_rtx_triangle.d" />
 		<Unit filename="src/serial/vec_rtx_triangle_rem.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/vec_rtx_triangle_rem.d" />
 		<Unit filename="src/serial/vec_size3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/vec_size3.d" />
 		<Unit filename="src/serial/vec_vec2.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/vec_vec2.d" />
 		<Unit filename="src/serial/vec_vec3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/serial/vec_vec3.d" />
 		<Unit filename="src/terrain/arr/add_grass.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/add_grass.d" />
 		<Unit filename="src/terrain/arr/arr2d_dvec3_sample.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/arr2d_dvec3_sample.d" />
 		<Unit filename="src/terrain/arr/chunk_detail.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/chunk_detail.d" />
 		<Unit filename="src/terrain/arr/gen_normals.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/gen_normals.d" />
 		<Unit filename="src/terrain/arr/send_iter.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/send_iter.d" />
 		<Unit filename="src/terrain/arr/send_ter.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/send_ter.d" />
 		<Unit filename="src/terrain/arr/send_ter_chunk.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/send_ter_chunk.d" />
 		<Unit filename="src/terrain/arr/split.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/split.d" />
 		<Unit filename="src/terrain/arr/terrain.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/terrain.d" />
 		<Unit filename="src/terrain/arr/village.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/village.d" />
 		<Unit filename="src/terrain/arr/village_npc.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/terrain/arr/village_npc.d" />
 		<Unit filename="src/texture/cluster.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/cluster.d" />
 		<Unit filename="src/texture/cluster_allocate.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/cluster_allocate.d" />
 		<Unit filename="src/texture/cluster_allocate_fast.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/cluster_allocate_fast.d" />
 		<Unit filename="src/texture/cluster_destroy.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/cluster_destroy.d" />
 		<Unit filename="src/texture/cluster_free.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/cluster_free.d" />
 		<Unit filename="src/texture/cluster_global.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/cluster_global.d" />
 		<Unit filename="src/texture/cluster_row.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/cluster_row.d" />
 		<Unit filename="src/texture/texture.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/texture.d" />
 		<Unit filename="src/texture/texture_binding.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/texture_binding.d" />
 		<Unit filename="src/texture/texture_f.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/texture_f.d" />
 		<Unit filename="src/texture/texture_f_binding.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/texture_f_binding.d" />
 		<Unit filename="src/texture/texture_f_light.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/texture_f_light.d" />
 		<Unit filename="src/texture/texture_f_refresh.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/texture_f_refresh.d" />
 		<Unit filename="src/texture/texture_f_write.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/texture_f_write.d" />
 		<Unit filename="src/texture/texture_load.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/texture/texture_load.d" />
 		<Unit filename="src/world/chunk/border.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/border.d" />
 		<Unit filename="src/world/chunk/border_ter.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/border_ter.d" />
 		<Unit filename="src/world/chunk/chunk.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/chunk.d" />
 		<Unit filename="src/world/chunk/chunk2d_insert.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/chunk2d_insert.d" />
 		<Unit filename="src/world/chunk/context.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/context.d" />
 		<Unit filename="src/world/chunk/ext_load.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/ext_load.d" />
 		<Unit filename="src/world/chunk/get.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/get.d" />
 		<Unit filename="src/world/chunk/god.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/god.d" />
 		<Unit filename="src/world/chunk/god_stalled.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/god_stalled.d" />
 		<Unit filename="src/world/chunk/lod.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/lod.d" />
 		<Unit filename="src/world/chunk/lod_vertex_buffer.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/lod_vertex_buffer.d" />
 		<Unit filename="src/world/chunk/pos.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/pos.d" />
 		<Unit filename="src/world/chunk/send_global_ent.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/chunk/send_global_ent.d" />
 		<Unit filename="src/world/init.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/init.d" />
 		<Unit filename="src/world/insert.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/insert.d" />
 		<Unit filename="src/world/insert_context.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/insert_context.d" />
 		<Unit filename="src/world/load.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/load.d" />
 		<Unit filename="src/world/load_create_default_ents.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/load_create_default_ents.d" />
 		<Unit filename="src/world/load_folder.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/load_folder.d" />
 		<Unit filename="src/world/render.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/render.d" />
 		<Unit filename="src/world/spawn.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/spawn.d" />
 		<Unit filename="src/world/spawn_boss.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/spawn_boss.d" />
 		<Unit filename="src/world/update.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/world/update.d" />
 		<Extensions>
 			<editor_config active="1" use_tabs="0" tab_indents="1" tab_width="4" indent="4" eol_mode="2" />
 			<code_completion>

@@ -44,9 +44,23 @@ void shader_set(shader_t shader, dmat4 mvp, dmat4 world, dmat4 rot)
 void refresh_vp(demo_t *demo)
 {
     Mtx44 proj;
+    dvec3 u = ivec3_dvec3(_demo->cam.u);
+    dvec3 u_prev = ivec3_dvec3(_demo->cam.u_prev);
+    dvec3 f = ivec3_dvec3(_demo->cam.f);
+    dvec3 f_prev = ivec3_dvec3(_demo->cam.f_prev);
+    size_t rot_max = 12;
 
-    entity3_update_trans_inv(demo->world.camera);
-    dmat4_copy(demo->world.camera->trans.world_inv, demo->cam.mvp.view);
+    _demo->cam.rot_anim++;
+    if (_demo->cam.rot_anim > rot_max)
+        _demo->cam.rot_anim = rot_max;
+    double ratio = (double)_demo->cam.rot_anim / (double)rot_max;
+    u = dvec3_interpolate(u_prev, u, ratio);
+    f = dvec3_interpolate(f_prev, f, ratio);
+    dmat4_lookdir(ivec3_dvec3(_demo->cam.pos), f, u, _demo->cam.mvp.view);
+    demo->cam.mvp.view[0][2] *= -1;
+    demo->cam.mvp.view[1][2] *= -1;
+    demo->cam.mvp.view[2][2] *= -1;
+    demo->cam.mvp.view[3][2] *= -1;
     guPerspective(proj, 90.0f, (f32)_demo->win.w /_demo->win.h , 0.1f, 1000.0f);
     GX_LoadProjectionMtx(proj, GX_PERSPECTIVE);
 }

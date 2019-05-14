@@ -13,6 +13,13 @@ static void init_cam(demo_t *demo)
     demo->cam.fovw = M_PI / 2.0f;
     demo->cam.near = 1.0L;
     demo->cam.proj = PROJ_TYPE_PERSPECTIVE;
+    demo->cam.pos = ivec3_init(0, 0, -10);
+    demo->cam.r = ivec3_init(1, 0, 0);
+    demo->cam.u = ivec3_init(0, 1, 0);
+    demo->cam.f = ivec3_init(0, 0, 1);
+    demo->cam.r_prev = demo->cam.r;
+    demo->cam.u_prev = demo->cam.u;
+    demo->cam.f_prev = demo->cam.f;
 }
 
 demo_t* demo_init(void)

@@ -62,6 +62,14 @@ dvec3 dvec3_mul(dvec3 a, dvec3 b);
 
 dvec3 dvec3_adds(dvec3 vec, double value);
 
+ivec3 ivec3_add(ivec3 a, ivec3 b);
+ivec3 ivec3_sub(ivec3 a, ivec3 b);
+ivec3 ivec3_muls(ivec3 vec, int32_t value);
+ivec3 ivec3_divs(ivec3 vec, int32_t value);
+int ivec3_eq(ivec3 a, ivec3 b);
+ivec3 ivec3_init(int32_t x, int32_t y, int32_t z);
+dvec3 ivec3_dvec3(ivec3 src);
+
 dvec3 ray3_compute(ray3 ray, double t);
 
 vec4 vec4_add(vec4 a, vec4 b);
@@ -93,6 +101,7 @@ dvec4 dmat4_mul_vec4(dmat4 a, dvec4 b);
 
 void dmat4_perspective(proj_t proj, dmat4 res);
 void dmat4_ortho(proj_t proj, dmat4 res);
+void dmat4_lookdir(dvec3 p, dvec3 f, dvec3 u, dmat4 res);
 
 void dmat4_mat4(dmat4 src, mat4 dst);
 dmat4_w dmat4_dmat4_w(dmat4 src);

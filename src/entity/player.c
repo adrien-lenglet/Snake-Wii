@@ -20,7 +20,7 @@ void player_respawn(entity3 *ent)
 {
     entity3_tag_player_data_t *data = ent->tag_data;
 
-    ent->trans.pos = dvec3_init(0.0, 0.0, -10.0);
+    ent->trans.pos = dvec3_init(0.0, 0.0, -5.0);
     ent->trans.rot = dvec3_init(0.0, 0.0, 0.0);
     data->xp = 0.0;
     data->hp = data->max_hp / 2.0;
