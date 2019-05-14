@@ -54,6 +54,7 @@ typedef struct {
     mvp_t mvp;
     ray_viewport_t viewport;
     ivec3 pos;
+    ivec3 pos_prev;
     ivec3 r;
     ivec3 u;
     ivec3 f;
@@ -61,7 +62,8 @@ typedef struct {
     ivec3 u_prev;
     ivec3 f_prev;
     size_t rot_anim;
-    //double dir_ratio;
+    size_t pos_anim;
+    size_t speed;
 } cam_t;
 
 typedef struct {

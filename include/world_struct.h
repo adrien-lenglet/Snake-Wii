@@ -108,6 +108,8 @@ typedef enum {
     MESH_BANK_CASA_L2,
     MESH_BANK_NPC1,
     MESH_BANK_PLANE,
+    MESH_BANK_BOX,
+    MESH_BANK_BOX_INV,
     MESH_BANK_MAX
 } mesh_bank_t;
 
@@ -191,6 +193,7 @@ typedef enum  {
     ENTITY3_TAG_SWORD,
     ENTITY3_TAG_SKYBOX,
     ENTITY3_TAG_ENEMY,
+    ENTITY3_TAG_SNAKE,
     ENTITY3_TAG_MAX
 } entity3_tag_t;
 
@@ -237,15 +240,24 @@ typedef struct {
     void (*data_init)(void *data);
 } entity3_tag_meta_t;
 
+#define CUBE_SIZE 16
+#define CUBE_COUNT (CUBE_SIZE * CUBE_SIZE * CUBE_SIZE)
+
 typedef struct {
     char *map_path;
     size_t chunk_count;
     size_t chunk_allocated;
     chunk_t **chunk;        // used for rendering / world intersection
+    int cube[CUBE_SIZE][CUBE_SIZE][CUBE_SIZE];
+    size_t snake_cubes_start;
+    size_t snake_cubes_count;
+    ivec3 snake_cubes[CUBE_COUNT];
+    ivec3 snake_target;
     entity3 *ents;
     entity3 *player;
     entity3 *camera;
     entity3 *skybox;
+    entity3 *snake;
     dvec3 light_dir;
     vec_trigger_t triggers; // loaded triggers
     srect chunk2d_area;

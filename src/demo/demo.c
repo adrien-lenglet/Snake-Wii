@@ -51,7 +51,7 @@ static void move(int chan)
 //_demo->world.player->trans.pos.z += 0.01;
 }
 
-static void snake_rep_copy(void)
+static void snake_rot_anim(void)
 {
     _demo->cam.r_prev = _demo->cam.r;
     _demo->cam.u_prev = _demo->cam.u;
@@ -59,14 +59,64 @@ static void snake_rep_copy(void)
     _demo->cam.rot_anim = 0;
 }
 
+static void snake_pos_anim(void)
+{
+    _demo->cam.pos_prev = _demo->cam.pos;
+    _demo->cam.pos_anim = 0;
+}
+
+int snake_is_pos_safe(ivec3 pos)
+{
+    if (!((pos.x >= 0) && (pos.x < CUBE_SIZE) &&
+    (pos.y >= 0) && (pos.y < CUBE_SIZE) &&
+    (pos.z >= 0) && (pos.z < CUBE_SIZE)))
+        return 0;
+    return !_demo->world.cube[pos.x][pos.y][pos.z];
+}
+
 static void rot_vec(ivec3 *a, ivec3 *b, int is_cw)
 {
     ivec3 a_b = *a;
     ivec3 b_b = *b;
 
-    snake_rep_copy();
+    snake_rot_anim();
     *a = ivec3_muls(b_b, is_cw ? 1 : -1);
     *b = ivec3_muls(a_b, is_cw ? -1 : 1);
+    if (!snake_is_pos_safe(ivec3_add(_demo->cam.pos, _demo->cam.f))) {
+        *a = a_b;
+        *b = b_b;
+    }
+}
+
+void snake_set_visible(ivec3 pos, int value)
+{
+    entity3 *part = _demo->world.snake->sub.ent[pos.z + pos.y * CUBE_SIZE + pos.x * CUBE_SIZE * CUBE_SIZE];
+
+    if (value)
+        entity3_set_render(part, 0, mesh_full_ref_bank_init(MESH_BANK_BOX), MATERIAL_GRASS);
+    else
+        entity3_set_render(part, 0, mesh_full_ref_get_null(), MATERIAL_MAX);
+}
+
+void snake_set(ivec3 pos, int value)
+{
+    snake_set_visible(pos, value);
+    _demo->world.cube[pos.x][pos.y][pos.z] = value;
+}
+
+void snake_add_cube(ivec3 pos)
+{
+    _demo->world.snake_cubes[(_demo->world.snake_cubes_start + _demo->world.snake_cubes_count++) % CUBE_COUNT] = pos;
+    snake_set(pos, 1);
+}
+
+void snake_remove_last_cube(void)
+{
+    ivec3 pos;
+
+    pos = _demo->world.snake_cubes[(_demo->world.snake_cubes_start++) % CUBE_COUNT];
+    _demo->world.snake_cubes_count--;
+    snake_set(pos, 0);
 }
 
 void demo_loop(demo_t *demo)
@@ -75,11 +125,15 @@ void demo_loop(demo_t *demo)
     size_t frame = 0;
     u16 dir, dir_prev = 0;
     u16 dir_press;
+    int do_stall = 0;
 
     //main_quest_start();
     world_load_map();
     //printf("That is a typical error msg, taking up to 4MB OF VRAM. Please note this has nothing to do with you, now you can reboot your system.");
-	while(1) {
+    //for (size_t i = 0; i < 32; i++)
+        //snake_set(ivec3_init(rand() % CUBE_SIZE, rand() % CUBE_SIZE, rand() % CUBE_SIZE), 1);
+
+	while (1) {
 		WPAD_ScanPads();
         PAD_ScanPads();
 		if(WPAD_ButtonsDown(0) & WPAD_BUTTON_HOME)
@@ -98,14 +152,32 @@ void demo_loop(demo_t *demo)
         if (dir_press & PAD_BUTTON_DOWN)
             rot_vec(&_demo->cam.f, &_demo->cam.u, 0);
         frame++;
-        if (frame >= 60) {
+        if (frame >= _demo->cam.speed) {
+            snake_pos_anim();
             _demo->cam.pos = ivec3_add(_demo->cam.pos, _demo->cam.f);
             frame = 0;
+            if (!snake_is_pos_safe(_demo->cam.pos))
+                snake_init();
+            snake_add_cube(_demo->cam.pos);
+            if (do_stall)
+                do_stall = 0;
+            else
+                snake_remove_last_cube();
+            if (ivec3_eq(_demo->cam.pos, _demo->world.snake_target)) {
+                snake_spawn_target();
+                do_stall = 1;
+            }
         }
         move(0);
 
         world_update();
-		DrawScene();
+        for (size_t i = 0; i < _demo->world.snake_cubes_count; i++)
+            snake_set_visible(_demo->world.snake_cubes[(_demo->world.snake_cubes_start + i) % CUBE_COUNT], i < _demo->world.snake_cubes_count - 1);
+
+        Mtx view;
+        dmat4_Mtx(_demo->cam.mvp.view, view);
+        // BUG: Light ignores underlying polygon colors.
+        SetLight(view);
         world_render();
 
 		GX_CopyDisp(_demo->buf.frameBuffer[_demo->buf.fb],GX_TRUE);

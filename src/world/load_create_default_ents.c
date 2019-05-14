@@ -62,5 +62,21 @@ entity3* world_create_default_ents(void)
     set_sword(cam);
     create_skybox(res);
     //invent_add_item(ITEM_SWORD_1);
+    _demo->world.snake = entity3_create(res);
+    entity3_set_tag(_demo->world.snake, ENTITY3_TAG_SNAKE);
+    for (size_t i = 0; i < CUBE_SIZE; i++)
+        for (size_t j = 0; j < CUBE_SIZE; j++)
+            for (size_t k = 0; k < CUBE_SIZE; k++) {
+                _demo->world.cube[i][j][k] = 0;
+                entity3 *part = entity3_create(_demo->world.snake);
+                part->trans.pos = dvec3_init(i, j, k);
+                entity3_trans_update(part);
+            }
+    entity3_create(_demo->world.snake);
+    snake_spawn_target();
+    entity3 *border = entity3_create(res);
+    border->trans.scale = dvec3_init(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
+    entity3_set_render(border, 0, mesh_full_ref_bank_init(MESH_BANK_BOX_INV), MATERIAL_GRASS);
+    entity3_trans_update(border);
     return res;
 }

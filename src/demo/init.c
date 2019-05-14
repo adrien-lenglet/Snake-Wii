@@ -28,7 +28,7 @@ static GXColor lightColor[] = {
 
 void SetLight(Mtx view)
 {
-    return;
+    //return;
     (void)view;
 	guVector lpos;
 	guVector ldir = {0.0, 0.0, -1.0};
@@ -43,7 +43,7 @@ void SetLight(Mtx view)
 	GX_InitLightPos(&lobj, lpos.x, lpos.y, lpos.z);
 	GX_InitLightColor(&lobj, lightColor[0]);
     GX_InitLightDir(&lobj, ldir.x, ldir.y, ldir.z);
-    GX_InitLightSpot(&lobj, 40.0, GX_SP_COS);
+    GX_InitLightSpot(&lobj, 90.0, GX_SP_COS);
     GX_InitLightDistAttn(&lobj, 8.0, 0.9, GX_DA_STEEP);
 	GX_LoadLightObj(&lobj, GX_LIGHT0);
 
@@ -147,27 +147,22 @@ int BuildLists(GXTexObj texture) {
 	return 0;
 }
 
-void DrawScene(void) {
-    Mtx view;
+/*void DrawScene(void) {
 	Mtx model,modelview; // Various matrices
 	//guVector axis;                       // Axis to rotate on
-
-    dmat4_Mtx(_demo->cam.mvp.view, view);
-	// BUG: Light ignores underlying polygon colors.
-	SetLight(view); // Setup the light
 
 	for (yloop = 0; yloop < 6; yloop++) { // Loop through the y plane
 		for (xloop = 0; xloop < yloop; xloop++) { // Loop through the x plane
 			// Position the cubes on the screen
 			guMtxIdentity(model);
 
-			/*axis.x = 1.0f;
+			axis.x = 1.0f;
 			axis.y = 0;
-			axis.z = 0;*/
+			axis.z = 0;
 			//guMtxRotAxisDeg(model,&axis,(45.0f-(2.0f*(float)yloop)+xrot)); // Tilt the cubes up and down
 
-			/*axis.x = 0;
-			axis.y = 1.0f;*/
+			axis.x = 0;
+			axis.y = 1.0f;
 			//guMtxRotAxisDeg(model,&axis,(45.0f+yrot)); // Spin cubes left and right
 
 			guMtxTransApply(model,model, (float)yloop * 2.0f, xloop * 2.0, (float)xloop * 2.0f);
@@ -179,7 +174,7 @@ void DrawScene(void) {
 			GX_CallDispList(boxList[yloop-1],boxSize[yloop-1]); // Draw the box
 		}
 	}
-}
+}*/
 
 void init(void)
 {

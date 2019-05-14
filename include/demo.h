@@ -17,6 +17,10 @@ void demo_poll_input(demo_t *demo);
 int demo(arg_t, int mode_dev);
 demo_t* demo_init(void);
 
+void snake_init(void);
+void snake_spawn_target(void);
+int snake_is_pos_safe(ivec3 pos);
+
 void demo_init_win(demo_t *demo);
 
 void demo_quit(demo_t *demo);

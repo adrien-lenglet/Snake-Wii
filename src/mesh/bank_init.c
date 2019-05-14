@@ -23,6 +23,33 @@
     {MESH_BANK_MAX, NULL}
 };*/
 
+const vec3 cube[] = {
+    {0.0, 0.0, 0.0},
+    {0.0, 1.0, 0.0},
+    {1.0, 0.0, 0.0},
+
+    {1.0, 0.0, 0.0},
+    {1.0, 1.0, 0.0},
+    {1.0, 0.0, 1.0},
+
+    {1.0, 0.0, 1.0},
+    {1.0, 1.0, 1.0},
+    {0.0, 0.0, 1.0},
+
+    {0.0, 0.0, 1.0},
+    {0.0, 1.0, 1.0},
+    {0.0, 0.0, 0.0},
+
+
+    {0.0, 1.0, 0.0},
+    {0.0, 1.0, 1.0},
+    {1.0, 1.0, 0.0},
+
+    {0.0, 0.0, 0.0},
+    {1.0, 0.0, 0.0},
+    {0.0, 0.0, 1.0},
+};
+
 /*const vec3 skybox[] = {
     {-10.0f, -10.0f, 1.0f},
     {-10.0f, 10.0f, 1.0f},
@@ -74,25 +101,47 @@ static mesh_full_t* load_grass(void)
     return res;
 }
 
+static mesh_full_t* load_cube(void)
+{
+    mesh_full_t *res = mesh_full_create(1, 0);
+
+    for (size_t i = 0; i < 18 / 3; i++)
+        mesh_full_add_quad(res, &cube[i * 3]);
+    return res;
+}
+
+static mesh_full_t* load_cube_inv(void)
+{
+    mesh_full_t *res = mesh_full_create(1, 0);
+    vec3 p[3];
+
+    for (size_t i = 0; i < 18 / 3; i++) {
+        p[0] = cube[i * 3];
+        p[1] = cube[i * 3 + 2];
+        p[2] = cube[i * 3 + 1];
+        mesh_full_add_quad(res, p);
+    }
+    return res;
+}
+
 void mesh_bank_init(void)
 {
-    mesh_full_t *grass = load_grass();
-
-    for (size_t i = 0; i < MESH_BANK_MAX; i++)
-        _demo->mesh_bank[i] = grass;
+    for (size_t i = 0; i < MESH_BANK_BOX; i++)
+        _demo->mesh_bank[i] = load_grass();
     /*_demo->mesh_bank[MESH_BANK_SKYBOX] = load_skybox();
     _demo->mesh_bank[MESH_BANK_GRASS1] = load_grass();
     _demo->mesh_bank[MESH_BANK_PARTICLE1] = load_particle1();*/
     //for (size_t i = 0; desc[i].bank != MESH_BANK_MAX; i++)
     //    _demo->mesh_bank[desc[i].bank] = mesh_load_obj(desc[i].path);
+    _demo->mesh_bank[MESH_BANK_BOX] = load_cube();
+    _demo->mesh_bank[MESH_BANK_BOX_INV] = load_cube_inv();
     for (size_t i = 0; i < MESH_BANK_MAX; i++)
-        if (_demo->mesh_bank[i] == NULL) {
+        if (_demo->mesh_bank[i] == NULL)
             error_display("Can't load mesh #%u\n", i);
-        }
 }
 
 void mesh_bank_quit(void)
 {
-    //for (size_t i = 0; i < MESH_BANK_MAX; i++)
-    //    mesh_full_destroy(_demo->mesh_bank[i]);
+    for (size_t i = 0; i < MESH_BANK_MAX; i++)
+        mesh_full_destroy(_demo->mesh_bank[i]);
 }
