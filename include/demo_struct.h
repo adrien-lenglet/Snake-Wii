@@ -97,7 +97,9 @@ typedef struct {
     int cull_state;
     vec_msg_entry_t msgs;
     void *frameBuffer[2];
+    void *xfb;
     u32 fb;
+    GXRModeObj *rmode;
 } buf_t;
 
 typedef enum {

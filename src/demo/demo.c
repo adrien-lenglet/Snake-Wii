@@ -129,10 +129,13 @@ void demo_loop(demo_t *demo)
 
     //main_quest_start();
     world_load_map();
-    //printf("That is a typical error msg, taking up to 4MB OF VRAM. Please note this has nothing to do with you, now you can reboot your system.");
     //for (size_t i = 0; i < 32; i++)
         //snake_set(ivec3_init(rand() % CUBE_SIZE, rand() % CUBE_SIZE, rand() % CUBE_SIZE), 1);
-
+    /*fatInitDefault();
+    FILE *file = fopen("test.txt", "w+");
+    fputs("XDDDDD\n", file);
+    fclose(file);
+    error_display("%p\n", file);*/
 	while (1) {
 		WPAD_ScanPads();
         PAD_ScanPads();
@@ -156,8 +159,11 @@ void demo_loop(demo_t *demo)
             snake_pos_anim();
             _demo->cam.pos = ivec3_add(_demo->cam.pos, _demo->cam.f);
             frame = 0;
-            if (!snake_is_pos_safe(_demo->cam.pos))
+            if (!snake_is_pos_safe(_demo->cam.pos)) {
+                while (_demo->world.snake_cubes_count)
+                    snake_remove_last_cube();
                 snake_init();
+            }
             snake_add_cube(_demo->cam.pos);
             if (do_stall)
                 do_stall = 0;
@@ -166,6 +172,9 @@ void demo_loop(demo_t *demo)
             if (ivec3_eq(_demo->cam.pos, _demo->world.snake_target)) {
                 snake_spawn_target();
                 do_stall = 1;
+                _demo->cam.speed--;
+                if (_demo->cam.speed < 16)
+                    _demo->cam.speed = 16;
             }
         }
         move(0);

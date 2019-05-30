@@ -26,6 +26,7 @@
 
 #include <gccore.h>
 #include <wiiuse/wpad.h>
+#include <fat.h>
 #include "gl_loader.h"
 
 #include "struct.h"

@@ -9,8 +9,6 @@
 
 #define DEFAULT_FIFO_SIZE (256 * 1024)
 
-GXRModeObj *rmode = NULL;
-
 u32 texture[1];   // Storage for one texture
 void *boxList[5]; // Storage for the display lists
 u32 boxSize[5];   // Real display list sizes
@@ -28,7 +26,7 @@ static GXColor lightColor[] = {
 
 void SetLight(Mtx view)
 {
-    //return;
+    return;
     (void)view;
 	guVector lpos;
 	guVector ldir = {0.0, 0.0, -1.0};
@@ -193,22 +191,22 @@ void init(void)
 	WPAD_Init();
     PAD_Init();
 
-	rmode = VIDEO_GetPreferredMode(NULL);
+	_demo->buf.rmode = VIDEO_GetPreferredMode(NULL);
 
 	// allocate the fifo buffer
 	gpfifo = memalign(32,DEFAULT_FIFO_SIZE);
 	memset(gpfifo,0,DEFAULT_FIFO_SIZE);
 
 	// allocate 2 framebuffers for double buffering
-	_demo->buf.frameBuffer[0] = SYS_AllocateFramebuffer(rmode);
-	_demo->buf.frameBuffer[1] = SYS_AllocateFramebuffer(rmode);
+	_demo->buf.frameBuffer[0] = SYS_AllocateFramebuffer(_demo->buf.rmode);
+	_demo->buf.frameBuffer[1] = SYS_AllocateFramebuffer(_demo->buf.rmode);
 
 	// configure video
-	VIDEO_Configure(rmode);
+	VIDEO_Configure(_demo->buf.rmode);
 	VIDEO_SetNextFramebuffer(_demo->buf.frameBuffer[_demo->buf.fb]);
 	VIDEO_Flush();
 	VIDEO_WaitVSync();
-	if(rmode->viTVMode & VI_NON_INTERLACE)
+	if(_demo->buf.rmode->viTVMode & VI_NON_INTERLACE)
         VIDEO_WaitVSync();
 
 	_demo->buf.fb ^= 1;
@@ -220,16 +218,16 @@ void init(void)
 	GX_SetCopyClear(background, 0x00FFFFFF);
 
 	// other gx setup
-	GX_SetViewport(0,0,rmode->fbWidth,rmode->efbHeight,0,1);
-	yscale = GX_GetYScaleFactor(rmode->efbHeight,rmode->xfbHeight);
+	GX_SetViewport(0,0, _demo->buf.rmode->fbWidth, _demo->buf.rmode->efbHeight,0,1);
+	yscale = GX_GetYScaleFactor(_demo->buf.rmode->efbHeight, _demo->buf.rmode->xfbHeight);
 	xfbHeight = GX_SetDispCopyYScale(yscale);
-	GX_SetScissor(0,0,rmode->fbWidth,rmode->efbHeight);
-	GX_SetDispCopySrc(0,0,rmode->fbWidth,rmode->efbHeight);
-	GX_SetDispCopyDst(rmode->fbWidth,xfbHeight);
-	GX_SetCopyFilter(rmode->aa,rmode->sample_pattern,GX_TRUE,rmode->vfilter);
-	GX_SetFieldMode(rmode->field_rendering,((rmode->viHeight==2*rmode->xfbHeight)?GX_ENABLE:GX_DISABLE));
+	GX_SetScissor(0,0, _demo->buf.rmode->fbWidth, _demo->buf.rmode->efbHeight);
+	GX_SetDispCopySrc(0,0, _demo->buf.rmode->fbWidth, _demo->buf.rmode->efbHeight);
+	GX_SetDispCopyDst(_demo->buf.rmode->fbWidth, xfbHeight);
+	GX_SetCopyFilter(_demo->buf.rmode->aa, _demo->buf.rmode->sample_pattern, GX_TRUE, _demo->buf.rmode->vfilter);
+	GX_SetFieldMode(_demo->buf.rmode->field_rendering,((_demo->buf.rmode->viHeight==2*_demo->buf.rmode->xfbHeight )? GX_ENABLE : GX_DISABLE));
 
-	if (rmode->aa) {
+	if (_demo->buf.rmode->aa) {
 		GX_SetPixelFmt(GX_PF_RGB565_Z16, GX_ZC_LINEAR);
 	} else {
 		GX_SetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);
@@ -275,15 +273,37 @@ void init(void)
 	if (BuildLists(texture)) { // Build the display lists
 		exit(1);        // Exit if failed.
 	}
-    CON_Init(_demo->buf.frameBuffer[0], 20, 20, rmode->fbWidth, rmode->efbHeight, rmode->fbWidth * VI_DISPLAY_PIX_SZ);
     VIDEO_SetBlack(FALSE);
-
-    _demo->win.w = rmode->viWidth;
-    _demo->win.h = rmode->viHeight;
     GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
     GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GX_SetAlphaUpdate(GX_TRUE);
     GX_SetColorUpdate(GX_TRUE);
+
+
+	_demo->buf.xfb = MEM_K0_TO_K1(SYS_AllocateFramebuffer(_demo->buf.rmode));
+
+	// Initialise the console, required for printf
+	console_init(_demo->buf.xfb, 20, 20, _demo->buf.rmode->fbWidth, _demo->buf.rmode->xfbHeight, _demo->buf.rmode->fbWidth * VI_DISPLAY_PIX_SZ);
+
+	// Set up the video registers with the chosen mode
+	VIDEO_Configure(_demo->buf.rmode);
+
+	// Tell the video hardware where our display memory is
+	VIDEO_SetNextFramebuffer(_demo->buf.xfb);
+
+	// Make the display visible
+	VIDEO_SetBlack(FALSE);
+
+	// Flush the video register changes to the hardware
+	VIDEO_Flush();
+
+	// Wait for Video setup to complete
+	VIDEO_WaitVSync();
+	if(_demo->buf.rmode->viTVMode&VI_NON_INTERLACE)
+        VIDEO_WaitVSync();
+	
+    _demo->win.w = _demo->buf.rmode->viWidth;
+    _demo->win.h = _demo->buf.rmode->viHeight;
 }
 
 void quit(void)

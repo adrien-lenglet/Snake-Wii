@@ -35,7 +35,7 @@ export LDFLAGS	=	$(MACHDEP) -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-export LIBS	:=	-lwiiuse -lbte -logc -lm
+export LIBS	:=	-lwiiuse -lbte -lfat -logc -lm
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
