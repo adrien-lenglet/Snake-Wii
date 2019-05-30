@@ -1,4 +1,5 @@
 build/
 *.dol
 *.elf
+*.o
 *.d
