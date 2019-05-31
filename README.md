@@ -1,6 +1,8 @@
 # Snake-Wii
 3D snake for Nintendo Wii™
 
+![Game screenshot](https://i.imgur.com/t9aIhRO.png)
+
 ## Build instructions
 
 You need the devkitPPC toolchain in order to compile this game.
