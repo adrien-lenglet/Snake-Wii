@@ -3,7 +3,13 @@
 
 ![Game screenshot](https://i.imgur.com/t9aIhRO.png)
 
-## Build instructions
+## Background [added context from Adrien LENGLET, 31st of August, 2023]
+
+This is mostly a playground homebrew I wrote, based off the game engine my colleagues & I wrote in college at the time https://github.com/Sangliers-Feroces/Vega-Engine  
+The renderer was rewritten of course, as the Dolphin architecture uses a fixed pipeline so modern OpenGL couldn't be ported as is.  
+Other than that, this is a 3D snake with the same texture for everything. It was fun learning about Dolphin programming in couple of days! I would like to get back to homebrew programming and work on state-of-the art renderers someday.
+
+## Build instructions [as was published on 31st of May, 2019]
 
 You need the devkitPPC toolchain in order to compile this game.
 
